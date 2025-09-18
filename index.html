@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gaurav Vasan — Portfolio</title>
+  <meta name="description" content="Arkham-inspired AAA portfolio with cinematic UI.">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="fx">
+    <canvas id="fx-smoke"></canvas>
+    <canvas id="fx-particles"></canvas>
+    <div class="vignette"></div>
+    <div class="scanlines"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-mark" src="assets/glyph.svg" alt="">
+      <div class="brand-text">
+        <span class="title">GAURAV VASAN</span>
+        <span class="subtitle">Software Engineer • Python • AWS • UE5</span>
+      </div>
+    </div>
+    <nav class="actions">
+      <button id="btn-audio" class="btn ghost" aria-pressed="true" title="Toggle UI Sounds (M)">🔊 <span>Sound</span></button>
+      <a class="btn primary" href="assets/Gaurav_Vasan_Resume.pdf" download>⬇ Resume</a>
+    </nav>
+  </header>
+
+  <main id="shell">
+    <aside class="menu" role="navigation" aria-label="Main">
+      <div class="cursor">
+        <svg viewBox="0 0 120 40" class="cursor-svg" aria-hidden="true">
+          <path d="M0 20 L20 0 H110 L120 20 L110 40 H20 Z" class="cursor-path"/>
+        </svg>
+      </div>
+      <button class="menu-item selected" data-panel="home"><span class="bullet"></span> Enter</button>
+      <button class="menu-item" data-panel="projects"><span class="bullet"></span> Projects</button>
+      <button class="menu-item" data-panel="skills"><span class="bullet"></span> Skills</button>
+      <button class="menu-item" data-panel="experience"><span class="bullet"></span> Experience</button>
+      <button class="menu-item" data-panel="achievements"><span class="bullet"></span> Achievements</button>
+      <button class="menu-item" data-panel="contact"><span class="bullet"></span> Contact</button>
+      <button class="menu-item" data-panel="settings"><span class="bullet"></span> Settings</button>
+      <div class="hint">↑↓ Navigate • Enter Select • Esc Back</div>
+    </aside>
+
+    <section class="viewport">
+      <!-- HOME -->
+      <section id="panel-home" class="panel active" role="region" aria-labelledby="home-tab">
+        <div class="hero-grid">
+          <!-- Left HUD -->
+          <section class="hud-col left">
+            <div class="bat-panel mini">
+              <h2 data-glitch="IMPACT">IMPACT</h2>
+              <div class="metric"><span class="big">4+</span><span>Years</span></div>
+              <div class="metric"><span class="big">15+</span><span>Cloud Apps</span></div>
+              <div class="metric"><span class="big">30%</span><span>Productivity</span></div>
+              <div class="scan"></div>
+            </div>
+            <div class="bat-panel mini">
+              <h2 data-glitch="CLOUD">CLOUD</h2>
+              <ul class="feed" data-rotate="Lambda, API Gateway, DynamoDB, S3, SNS/FCM"></ul>
+              <div class="hud-graph">
+                <div class="radial"><canvas data-radial="cloud" data-value="0.88"></canvas><div class="graph-label">Proficiency</div></div>
+                <div class="spark"><canvas data-spark="deploy" data-points="6,8,7,9,10,12,11,13"></canvas><div class="graph-label">Deploys</div></div>
+              </div>
+              <div class="scan"></div>
+            </div>
+          </section>
+
+          <!-- Center -->
+          <section class="hud-core">
+            <h1 class="neon-title">GAURAV <span>VASAN</span></h1>
+            <p class="type-line" data-rotate='[
+              "Software Engineer • Python • AWS • UE5",
+              "Serverless systems that ship fast",
+              "Secure APIs • Realtime data • Clean UX"
+            ]'><span class="cursor">▋</span></p>
+            <div class="cta-row">
+              <button class="btn primary cta" data-goto="projects">View Projects</button>
+              <a class="btn ghost cta" href="assets/Gaurav_Vasan_Resume.pdf" download>Download Resume</a>
+            </div>
+            <div class="press-start">PRESS ENTER ⏎</div>
+          </section>
+
+          <!-- Right HUD -->
+          <section class="hud-col right">
+            <div class="bat-panel mini">
+              <h2 data-glitch="SECURITY">SECURITY</h2>
+              <ul class="feed" data-rotate="JWT / OAuth2, IAM, HTTPS + TLS, KMS at Rest, Signed URLs"></ul>
+              <div class="hud-graph">
+                <div class="radial"><canvas data-radial="security" data-value="0.82"></canvas><div class="graph-label">Score</div></div>
+                <div class="spark"><canvas data-spark="errors" data-points="9,8,7,5,4,3,3,2,1,1"></canvas><div class="graph-label">Errors</div></div>
+              </div>
+              <div class="scan"></div>
+            </div>
+            <div class="bat-panel mini">
+              <h2 data-glitch="TOOLING">TOOLING</h2>
+              <div class="bat-chips">
+                <span class="bat-chip">Python</span><span class="bat-chip">Flask</span><span class="bat-chip">FastAPI</span>
+                <span class="bat-chip">React</span><span class="bat-chip">Docker</span><span class="bat-chip">GH Actions</span>
+              </div>
+              <div class="scan"></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="panel-projects" class="panel" role="region" aria-labelledby="projects-tab">
+        <div class="panel-head">
+          <h1 id="projects-tab">Cases</h1>
+          <p class="lede">A dossier of shipped builds and prototypes.</p>
+        </div>
+        <div class="grid projects">
+          <article class="project" data-rarity="rare" data-tags="backend data"><div class="card-inner">
+            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_github_clean.png" alt="GitHub Data Viz"></div>
+            <div class="meta">
+              <span class="tag">Flask • React • GitHub API</span>
+              <h3>GitHub Data Visualization App</h3>
+              <p>Stars/forks/commits graphed with Matplotlib; JSON to a reactive UI.</p>
+              <div class="actions"><a class="btn ghost" aria-disabled="true">Repo (private)</a></div>
+              <div class="tech-icons">
+                <img src="assets/tech_python.svg" alt="python"/><img src="assets/tech_flask.svg" alt="flask"/><img src="assets/tech_react.svg" alt="react"/><img src="assets/tech_github.svg" alt="github"/>
+              </div>
+            </div>
+          </div></article>
+
+          <article class="project" data-rarity="legendary" data-tags="serverless backend"><div class="card-inner">
+            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_secure_clean.png" alt="Secure Messaging"></div>
+            <div class="meta">
+              <span class="tag">AWS • Serverless • Security</span>
+              <h3>Secure Scheduled Messaging</h3>
+              <p>Lambda APIs, DynamoDB, PayPal + credits, JWT auth, fail-safe delivery workflows.</p>
+              <div class="actions"><a class="btn ghost" aria-disabled="true">Case Study (coming)</a></div>
+              <div class="tech-icons">
+                <img src="assets/tech_aws.svg" alt="aws"/><img src="assets/tech_lambda.svg" alt="lambda"/><img src="assets/tech_dynamodb.svg" alt="dynamodb"/><img src="assets/tech_s3.svg" alt="s3"/><img src="assets/tech_security.svg" alt="security"/>
+              </div>
+            </div>
+          </div></article>
+
+          <article class="project" data-rarity="rare" data-tags="realtime serverless"><div class="card-inner">
+            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_tracking_clean.png" alt="Tracking & Gamification"></div>
+            <div class="meta">
+              <span class="tag">AWS • Realtime • Mobile</span>
+              <h3>Tracking & Gamification</h3>
+              <p>Live routes, leaderboards, S3 snapshots, SNS/FCM, cold-start tuning.</p>
+              <div class="actions"><a class="btn ghost" aria-disabled="true">Demo by request</a></div>
+              <div class="tech-icons">
+                <img src="assets/tech_aws.svg" alt="aws"/><img src="assets/tech_realtime.svg" alt="realtime"/><img src="assets/tech_sns.svg" alt="sns"/><img src="assets/tech_fcm.svg" alt="fcm"/>
+              </div>
+            </div>
+          </div></article>
+
+          <article class="project" data-rarity="legendary" data-tags="game"><div class="card-inner">
+            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_ue5_clean.png" alt="UE5 Prototype"></div>
+            <div class="meta">
+              <span class="tag">UE5 • Niagara</span>
+              <h3>Flash Mechanics Prototype</h3>
+              <p>High-speed locomotion, lightning ribbons, exposure-safe VFX, gameplay tags.</p>
+              <div class="actions"><a class="btn ghost" aria-disabled="true">Devlog</a></div>
+              <div class="tech-icons">
+                <img src="assets/tech_ue5.svg" alt="ue5"/><img src="assets/tech_niagara.svg" alt="niagara"/>
+              </div>
+            </div>
+          </div></article>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="panel-skills" class="panel" role="region" aria-labelledby="skills-tab">
+        <div class="panel-head">
+          <h1 id="skills-tab">Capabilities</h1>
+          <p class="lede">Compact category packs — expand to view all tools & frameworks.</p>
+        </div>
+        <div class="skill-packs">
+          <article class="skill-pack">
+            <div class="pack-hdr">
+              <div class="pack-title">Languages</div>
+              <div class="gwrap"><canvas class="pack-gauge" data-cat="game"></canvas></div>
+              <div class="gwrap"><canvas class="pack-gauge" data-cat="security"></canvas></div>
+              <div class="gwrap"><canvas class="pack-gauge" data-cat="cloud"></canvas></div>
+              <div class="gwrap"><canvas class="pack-gauge" data-cat="frameworks"></canvas></div>
+              <div class="gwrap"><canvas class="pack-gauge" data-cat="languages"></canvas></div>
+              <div class="pack-meta">5</div>
+            </div>
+            <details>
+              <summary>Show skills</summary>
+              <div class="pack-body">
+                <div class="tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">JavaScript / TypeScript</span>
+                  <span class="tag">Java</span>
+                  <span class="tag">SQL</span>
+                  <span class="tag">Bash</span>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="skill-pack">
+            <div class="pack-hdr">
+              <div class="pack-title">Frameworks & Libraries</div>
+              <div class="pack-meta">5+</div>
+            </div>
+            <details>
+              <summary>Show skills</summary>
+              <div class="pack-body">
+                <div class="tags">
+                  <span class="tag">Flask</span><span class="tag">Django</span><span class="tag">FastAPI</span>
+                  <span class="tag">React</span><span class="tag">SAP UI5</span>
+                  <span class="tag">OpenCV</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="skill-pack">
+            <div class="pack-hdr">
+              <div class="pack-title">Cloud & DevOps</div>
+              <div class="pack-meta">7</div>
+            </div>
+            <details>
+              <summary>Show skills</summary>
+              <div class="pack-body">
+                <div class="tags">
+                  <span class="tag">AWS Lambda</span><span class="tag">API Gateway</span><span class="tag">DynamoDB</span><span class="tag">S3</span><span class="tag">SNS</span>
+                  <span class="tag">Serverless</span><span class="tag">Microservices</span>
+                  <span class="tag">Docker</span><span class="tag">Linux</span>
+                  <span class="tag">CI (GitHub Actions)</span><span class="tag">Git</span>
+                  <span class="tag">SAP BTP</span><span class="tag">ABAP on BTP</span>
+                  <span class="tag">GCP (basics)</span>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="skill-pack">
+            <div class="pack-hdr">
+              <div class="pack-title">Security & Integrations</div>
+              <div class="pack-meta">3</div>
+            </div>
+            <details>
+              <summary>Show skills</summary>
+              <div class="pack-body">
+                <div class="tags">
+                  <span class="tag">JWT Auth / API Security</span><span class="tag">FCM / SNS Push</span><span class="tag">PayPal SDK / Payments</span>
+                </div>
+              </div>
+            </details>
+          </article>
+
+          <article class="skill-pack">
+            <div class="pack-hdr">
+              <div class="pack-title">Game / Realtime</div>
+              <div class="pack-meta">2</div>
+            </div>
+            <details>
+              <summary>Show skills</summary>
+              <div class="pack-body">
+                <div class="tags">
+                  <span class="tag">UE5 Niagara VFX / Blueprints</span><span class="tag">Realtime Systems / Performance</span>
+                </div>
+              </div>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="panel-experience" class="panel" role="region" aria-labelledby="exp-tab">
+        <div class="panel-head"><h1 id="exp-tab">Experience</h1></div>
+
+        <div class="kpis">
+          <div class="kpi"><div class="num" data-target="4">0</div><div class="lbl">Years Experience</div></div>
+          <div class="kpi"><div class="num" data-target="15">0</div><div class="lbl">Apps Delivered</div></div>
+          <div class="kpi"><div class="num" data-target="30">0</div><div class="lbl">% Productivity Boost</div></div>
+          <div class="kpi"><div class="num" data-target="20">0</div><div class="lbl">Issues/Day Resolved</div></div>
+        </div>
+
+        <div class="mission-grid">
+          <article class="mission">
+            <div class="hdr">
+              <div class="title">Simba Cleaners LLC — Python Developer</div>
+              <div class="meta">Mar 2025 – Present</div>
+            </div>
+            <div class="badges">
+              <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">Django</span>
+              <span class="badge">Microservices</span><span class="badge">CI/CD</span>
+            </div>
+            <details>
+              <summary>View Details</summary>
+              <div class="body">
+                <ul>
+                  <li>Migrated legacy .NET monolith to Python microservices, reducing maintenance cost by <b>25%</b>.</li>
+                  <li>Built REST APIs for order mgmt, billing & notifications — cut response time by <b>40%</b>.</li>
+                  <li>Integrated with POS, automated invoicing — boosted efficiency by <b>30%</b>.</li>
+                  <li>Implemented tests with PyTest/Postman — reduced production issues by <b>20%</b>.</li>
+                  <li>Contributed to CI/CD (GitHub Actions, Docker) — sped deployment cycle from 2 weeks to 2 days.</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+
+          <article class="mission">
+            <div class="hdr">
+              <div class="title">Tata Consultancy Services — Python Developer / SAP Cloud Consultant</div>
+              <div class="meta">Apr 2021 – Dec 2022</div>
+            </div>
+            <div class="badges">
+              <span class="badge">SAP BTP</span><span class="badge">UI5</span><span class="badge">ABAP</span>
+              <span class="badge">Python</span><span class="badge">JWT/OAuth2</span>
+            </div>
+            <details>
+              <summary>View Details</summary>
+              <div class="body">
+                <ul>
+                  <li>Designed & maintained 15+ SAP BTP & Python web apps — delivered <b>30% higher functionality</b>.</li>
+                  <li>Optimized workflows with Agile, code quality, perf tuning, accessibility, boosting productivity by <b>30%</b>.</li>
+                  <li>Diagnosed 10–20 daily issues via PyCharm, Chrome DevTools, SAP Web IDE with minimal downtime.</li>
+                  <li>Partnered with global teams, integrated REST/JSON/AJAX/SOAP; trained users on SAP solutions.</li>
+                  <li>Documented technical specs, enabling iterative Agile improvements and long-term scalability.</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+
+          <article class="mission">
+            <div class="hdr">
+              <div class="title">Tata Consultancy Services — Python Developer Trainee</div>
+              <div class="meta">Nov 2020 – Mar 2021</div>
+            </div>
+            <div class="badges">
+              <span class="badge">Python</span><span class="badge">SAP Cloud</span><span class="badge">UI5</span>
+              <span class="badge">JavaScript</span><span class="badge">SQL</span>
+            </div>
+            <details>
+              <summary>View Details</summary>
+              <div class="body">
+                <ul>
+                  <li>Completed 6-month TCS Xplore & ILP training; passed Elevate Wings 1 exam in Python.</li>
+                  <li>Built SAP Cloud Apps with UI5 & SQL DB; gained expertise in APIs, admin, & Agile cycles.</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+
+          <article class="mission">
+            <div class="hdr">
+              <div class="title">Education</div>
+              <div class="meta">Illinois Institute of Technology (M.S. CS, Dec 2024) • Kurukshetra University (B.Tech CSE, May 2020)</div>
+            </div>
+            <div class="badges">
+              <span class="badge">Distributed Systems</span><span class="badge">Cloud-native</span><span class="badge">Applied ML</span>
+            </div>
+            <details>
+              <summary>View Details</summary>
+              <div class="body">
+                <ul>
+                  <li>Grad focus: cloud-native, realtime systems, visualization, ML.</li>
+                  <li>Undergrad: foundation in algorithms, databases, web dev, networking.</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+
+          <article class="mission">
+            <div class="hdr">
+              <div class="title">Certifications</div>
+              <div class="meta">Completed 2020 – 2024</div>
+            </div>
+            <div class="badges">
+              <span class="badge">CS50 AI</span><span class="badge">Azure AI</span><span class="badge">ML Fundamentals</span>
+              <span class="badge">SAP Cloud</span><span class="badge">SAP Analytics</span>
+            </div>
+            <details>
+              <summary>View Details</summary>
+              <div class="body">
+                <ul>
+                  <li>Harvard CS50’s Intro to AI with Python</li>
+                  <li>Microsoft: Fundamentals of ML, Azure AI Fundamentals, Azure AI Services</li>
+                  <li>SAP Cloud Platform & Analytics Cloud (Udemy), SAP Basis Admin</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+
+          <article class="mission">
+            <div class="hdr">
+              <div class="title">Trainings & Achievements</div>
+              <div class="meta">2018 – 2021</div>
+            </div>
+            <div class="badges">
+              <span class="badge">DUCAT Java</span><span class="badge">Python Industrial Training</span><span class="badge">Elevate Wings 1</span>
+            </div>
+            <details>
+              <summary>View Details</summary>
+              <div class="body">
+                <ul>
+                  <li>DUCAT Java training (6 weeks)</li>
+                  <li>Industrial Python training (SO Infotech, 6 weeks)</li>
+                  <li>TCS Xplore (6 months) — Python focus</li>
+                  <li><b>Elevate Wings 1 Exam (TCS)</b>, Feb 2021</li>
+                </ul>
+              </div>
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENTS (Commendations) -->
+      <section id="panel-achievements" class="panel" role="region" aria-labelledby="achievements-tab">
+        <div class="panel-head">
+          <h1 id="achievements-tab">Commendations</h1>
+          <p class="lede">Verified certificates and badges.</p>
+        </div>
+
+        <div class="commend-grid">
+          <article class="commend-card">
+            <div class="c-ribbon">SAP</div>
+            <div class="c-title">SAP BTP & Extension Suite</div>
+            <div class="c-meta"><span class="issuer">SAP</span><span class="dot">•</span><span class="year">2022</span></div>
+            <div class="c-tags"><span>Cloud Platform</span><span>Integration</span><span>Extensions</span></div>
+          </article>
+
+          <article class="commend-card">
+            <div class="c-ribbon">SAP</div>
+            <div class="c-title">SAP UI5 / Fiori Developer</div>
+            <div class="c-meta"><span class="issuer">SAP</span><span class="dot">•</span><span class="year">2022</span></div>
+            <div class="c-tags"><span>UI5</span><span>Fiori Apps</span><span>Front-end</span></div>
+          </article>
+
+          <article class="commend-card">
+            <div class="c-ribbon">SAP</div>
+            <div class="c-title">SAP Analytics Cloud</div>
+            <div class="c-meta"><span class="issuer">Udemy</span><span class="dot">•</span><span class="year">2022</span></div>
+            <div class="c-tags"><span>Data Viz</span><span>BI</span><span>Cloud Reporting</span></div>
+          </article>
+
+          <article class="commend-card">
+            <div class="c-ribbon">SAP</div>
+            <div class="c-title">SAP Basis Administration</div>
+            <div class="c-meta"><span class="issuer">Udemy</span><span class="dot">•</span><span class="year">2022</span></div>
+            <div class="c-tags"><span>Basis</span><span>System Admin</span></div>
+          </article>
+
+          <article class="commend-card">
+            <div class="c-ribbon">Verified</div>
+            <div class="c-title">TCS Elevate – Wings 1</div>
+            <div class="c-meta"><span class="issuer">TCS</span><span class="dot">•</span><span class="year">2021</span></div>
+            <div class="c-tags"><span>Software Eng</span><span>Problem Solving</span></div>
+          </article>
+
+          <article class="commend-card">
+            <div class="c-ribbon">Certificate</div>
+            <div class="c-title">Harvard CS50 AI</div>
+            <div class="c-meta"><span class="issuer">HarvardX</span><span class="dot">•</span><span class="year">2023</span></div>
+            <div class="c-tags"><span>AI</span><span>ML</span><span>Optimization</span></div>
+          </article>
+
+          <article class="commend-card">
+            <div class="c-ribbon">Fundamentals</div>
+            <div class="c-title">Azure AI Fundamentals</div>
+            <div class="c-meta"><span class="issuer">Microsoft</span><span class="dot">•</span><span class="year">2023</span></div>
+            <div class="c-tags"><span>Azure AI</span><span>Responsible AI</span></div>
+          </article>
+
+          <article class="commend-card">
+            <div class="c-ribbon">Fundamentals</div>
+            <div class="c-title">Microsoft ML Fundamentals</div>
+            <div class="c-meta"><span class="issuer">Microsoft Learn</span><span class="dot">•</span><span class="year">2023</span></div>
+            <div class="c-tags"><span>ML</span><span>Azure</span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="panel-contact" class="panel" role="region" aria-labelledby="contact-tab">
+        <div class="panel-head">
+          <h1 id="contact-tab">Signal</h1>
+          <p class="lede">Fastest way to reach me. I usually reply within a day.</p>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:gauravvasan121@gmail.com" target="_blank" rel="noreferrer">
+            <img src="assets/ic_email.svg" alt="" class="cicon"/>
+            <div class="cmeta">
+              <div class="ctitle">Email</div>
+              <div class="csub">gauravvasan121@gmail.com</div>
+            </div>
+          </a>
+          <a class="contact-card" href="tel:+1-000-000-0000">
+            <img src="assets/ic_phone.svg" alt="" class="cicon"/>
+            <div class="cmeta">
+              <div class="ctitle">Phone</div>
+              <div class="csub">+1 (847) 804-7120</div>
+            </div>
+          </a>
+          <a class="contact-card" href="https://linkedin.com/in/gaurav-vasan121" target="_blank" rel="noreferrer">
+            <img src="assets/ic_linkedin.svg" alt="" class="cicon"/>
+            <div class="cmeta">
+              <div class="ctitle">LinkedIn</div>
+              <div class="csub">linkedin.com/in/gaurav-vasan121</div>
+            </div>
+          </a>
+          <a class="contact-card" href="assets/Gaurav_Vasan_Resume.pdf" download>
+            <img src="assets/ic_resume.svg" alt="" class="cicon"/>
+            <div class="cmeta">
+              <div class="ctitle">Resume</div>
+              <div class="csub">Download PDF</div>
+            </div>
+          </a>
+        </div>
+        <div class="contact-hint">Tip: Press <span class="glyph a">A</span> on a card to open.</div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="panel-settings" class="panel" role="region" aria-labelledby="settings-tab">
+        <div class="panel-head"><h1 id="settings-tab">Options</h1></div>
+        <div class="settings">
+          <label class="switch"><input type="checkbox" id="opt-reduced"> <span>Reduce Motion</span></label>
+          <label class="switch"><input type="checkbox" id="opt-grid"> <span>Grid Overlay</span></label>
+          <label class="switch"><input type="range" id="opt-volume" min="0" max="1" step="0.05" value="0.8"> <span>UI Volume</span></label>
+        </div>
+      </section>
+    </section> <!-- /.viewport -->
+  </main>
+
+  <footer class="footer">© <span id="year"></span> Gaurav Vasan • Arkham-inspired menu</footer>
+
+  <audio id="sfx-move" preload="auto" src="assets/move.wav"></audio>
+  <audio id="sfx-confirm" preload="auto" src="assets/confirm.wav"></audio>
+  <audio id="sfx-back" preload="auto" src="assets/back.wav"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
