@@ -73,7 +73,7 @@ body{
   height: calc(100% - 52px);
   width:100%;
   display:grid;
-  grid-template-columns: minmax(160px, 168px) minmax(0,1fr);
+  grid-template-columns: minmax(176px, 188px) minmax(0,1fr);
   grid-template-rows: minmax(0,1fr);
   gap:8px;
   padding:8px 8px 10px;
@@ -92,18 +92,26 @@ body{
 .menu .cursor{ position:absolute; left:0; top:20px; width:18px; height:36px; pointer-events:none; transition: transform .2s ease; overflow:hidden }
 .cursor-path{ fill: rgba(215,30,43,.5); stroke: var(--accent); stroke-width:1.5; filter: drop-shadow(0 0 18px rgba(215,30,43,.4)) }
 .menu-item{
-  font-family: Inter, system-ui; font-weight:800; letter-spacing:.08em;
-  text-transform:uppercase; font-size:.78rem; text-align:left;
-  padding:8px 8px 8px 18px; border-radius:4px; cursor:pointer;
+  font-family: Inter, system-ui; font-weight:800; letter-spacing:.04em;
+  text-transform:uppercase; font-size:.72rem; text-align:left;
+  padding:8px 6px 8px 12px; border-radius:4px; cursor:pointer;
   border:1px solid rgba(215,30,43,.18); background: rgba(215,30,43,.03); color:var(--fg);
   flex: 1 1 0;
   display: flex;
   align-items: center;
+  min-width: 0;
   min-height: 0;
   width: 100%;
   box-sizing: border-box;
+  white-space: nowrap;
+  overflow: visible;
 }
-.menu-item .bullet{ width:8px; height:8px; border-radius:50%; background: var(--accent); display:inline-block; margin-right:10px; opacity:.6 }
+.menu-item .bullet{
+  width:8px; height:8px; min-width:8px; min-height:8px;
+  flex: 0 0 8px;
+  border-radius:50%; background: var(--accent);
+  display:block; margin-right:8px; opacity:.6;
+}
 .menu-item.selected{ outline:none; border-color: var(--accent); background: rgba(215,30,43,.12); box-shadow: inset 0 0 0 1px var(--accent), 0 0 12px rgba(215,30,43,.18) }
 .menu .hint{ color:var(--muted); margin-top:4px; font-size:.78rem; flex: 0 0 auto; letter-spacing:.04em }
 
@@ -691,7 +699,7 @@ body{
 
 /* Fit laptops / short screens — Home stays one viewport, no scroll */
 @media (max-width: 1280px){
-  #shell{ grid-template-columns: minmax(152px, 16vw) minmax(0,1fr); gap:6px; padding:6px 6px 20px; }
+  #shell{ grid-template-columns: minmax(168px, 18vw) minmax(0,1fr); gap:6px; padding:6px 6px 20px; }
   .menu-item{ font-size:.76rem; padding:8px 8px 8px 18px; letter-spacing:.08em; }
   .logo-inventory{ gap: 5px; }
   .protocol-list{ font-size: .74rem; gap: 4px; }
@@ -744,12 +752,14 @@ body{
     width: auto;
     max-width: none;
     white-space: nowrap;
-    letter-spacing: .06em;
+    letter-spacing: .04em;
     scroll-snap-align: start;
     padding: 7px 10px; font-size: .72rem;
     border: 1px solid var(--line); border-radius: 999px;
     background: rgba(255,255,255,.03);
+    overflow: visible;
   }
+  .menu-item .bullet{ flex: 0 0 8px; min-width: 8px; }
   .menu-item.selected{ outline: none; box-shadow: 0 0 0 3px rgba(215,30,43,.18) }
 
   .viewport { position: relative; display: block; height: auto; min-height: 0; }
