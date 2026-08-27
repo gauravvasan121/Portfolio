@@ -1,1 +1,27 @@
-PLACEHOLDER_CSS
+/* =========================================================
+   Gaurav Vasan — Command HUD
+   Accent #d71e2b · bg #06080c · panels #0a0e16
+   ========================================================= */
+
+:root{
+  --bg:#06080c;
+  --fg:#e9edf5;
+  --muted:#8c92a4;
+  --accent:#d71e2b;
+  --line: rgba(255,255,255,0.08);
+  --panel:#0a0e16;
+  --panel-glass: rgba(10,14,22,.92);
+  --shadow: 0 24px 70px rgba(0,0,0,.6);
+  --hud-border: rgba(215,30,43,.32);
+  --mono: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*{box-sizing:border-box}
+html,body{width:100%; height:100%; margin:0;}
+html{background:var(--bg)}
+body{
+  color:var(--fg);
+  background: radial-gradient(1200px 800px at 80% -20%, #162030 0%, #06080c 60%);
+  font-family: Inter, system-ui, sans-serif;
+  overflow:hidden;
+}
