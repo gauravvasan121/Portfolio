@@ -86,15 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let lines = [];
     try{ lines = JSON.parse(el.dataset.rotate || '[]'); }catch{ lines = []; }
     if(!lines.length) return;
-    let i=0, txt='', removing=false;
+    let i=0;
+    function setLine(s){
+      if(el.childNodes[0]?.nodeType===3){ el.childNodes[0].textContent = s+' '; }
+      else { el.insertBefore(document.createTextNode(s+' '), el.firstChild); }
+    }
     function tick(){
-      const full = lines[i % lines.length];
-      txt = removing ? full.slice(0, txt.length-1) : full.slice(0, txt.length+1);
-      if(el.childNodes[0]?.nodeType===3){ el.childNodes[0].textContent = txt+' '; }
-      else { el.insertBefore(document.createTextNode(txt+' '), el.firstChild); }
-      if(!removing && txt===full){ removing=true; setTimeout(tick, 1200); return; }
-      if(removing && txt===''){ removing=false; i++; }
-      setTimeout(tick, removing ? 22 : 30);
+      setLine(lines[i % lines.length]);
+      i++;
+      setTimeout(tick, 2200);
     }
     tick();
   })();
@@ -182,13 +182,13 @@ function animateGauges(){
     const targetPct = Number(ring.dataset.pct || '0');
     const to = Number(span?.dataset.to || '0');
     const suffix = span?.dataset.suffix ?? '';
-    if(hudReduce()){
+    if(hudReduce() || !span){
       setGaugePct(ring, targetPct);
       if(span) span.textContent = to + suffix;
       return;
     }
     setGaugePct(ring, 0);
-    if(span) span.textContent = '0' + suffix;
+    span.textContent = to + suffix;
     const delay = idx * 40;
     const dur = 520;
     const t0 = performance.now();
