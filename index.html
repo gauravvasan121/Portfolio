@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gaurav Vasan — Portfolio</title>
   <meta name="description" content="Technical HUD portfolio: Python, AWS, UE5.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -49,37 +52,20 @@
     <section class="viewport">
       <!-- HOME -->
       <section id="panel-home" class="panel active" role="region" aria-labelledby="home-tab">
-        <div class="hero-grid">
-          <section class="hud-col left">
-            <div class="bat-panel mini hud-mod">
-              <h2 data-glitch="IMPACT">IMPACT</h2>
-              <div class="impact-gauges">
-                <div class="gauge-cell"><div class="ring" style="--pct:86"><span>4+</span></div><div class="graph-label">Years</div></div>
-                <div class="gauge-cell"><div class="ring" style="--pct:90"><span>15+</span></div><div class="graph-label">Cloud Apps</div></div>
-                <div class="gauge-cell"><div class="ring" style="--pct:72"><span>30%</span></div><div class="graph-label">Productivity</div></div>
-                <div class="gauge-cell"><div class="ring" style="--pct:80"><span>20</span></div><div class="graph-label">Issues/Day</div></div>
-              </div>
-              <div class="scan"></div>
-            </div>
-            <div class="bat-panel mini hud-mod">
-              <h2 data-glitch="SYSTEMS">SYSTEMS</h2>
-              <ul class="feed" data-rotate="Lambda, API Gateway, DynamoDB, S3, SNS/FCM"></ul>
-              <div class="hud-graph two">
-                <div class="radial"><canvas data-radial="cloud" data-value="0.88"></canvas><div class="graph-label">Cloud</div></div>
-                <div class="spark"><canvas data-spark="deploy" data-points="6,8,7,9,10,12,11,13"></canvas><div class="graph-label">Deploys</div></div>
-              </div>
-              <div class="scan"></div>
-            </div>
-          </section>
-
+        <div class="hud-stage">
           <section class="hud-core">
             <div class="reticle" aria-hidden="true">
+              <span class="ring r1"></span>
+              <span class="ring r2"></span>
+              <span class="ring r3"></span>
+              <span class="crosshair h"></span>
+              <span class="crosshair v"></span>
               <span class="tick n">000</span>
               <span class="tick e">090</span>
               <span class="tick s">180</span>
               <span class="tick w">270</span>
             </div>
-            <h1 class="neon-title">GAURAV <span>VASAN</span></h1>
+            <h1 id="home-tab" class="neon-title">GAURAV <span>VASAN</span></h1>
             <p class="type-line" data-rotate='[
               "Software Engineer • Python • AWS • UE5",
               "Serverless systems that ship fast",
@@ -87,47 +73,69 @@
             ]'><span class="cursor">▋</span></p>
             <div class="cta-row">
               <button class="btn primary cta" data-goto="projects">View Projects</button>
-              <a class="btn ghost cta" href="assets/Gaurav_Vasan_Resume.pdf" download>Download Resume</a>
+              <a class="btn ghost" href="assets/Gaurav_Vasan_Resume.pdf" download>Download Resume</a>
             </div>
             <div class="press-start">PRESS ENTER</div>
           </section>
 
-          <section class="hud-col right">
-            <div class="bat-panel mini hud-mod">
-              <h2 data-glitch="SECURITY">SECURITY</h2>
-              <ul class="feed" data-rotate="JWT / OAuth2, IAM, HTTPS + TLS, KMS at Rest, Signed URLs"></ul>
-              <div class="hud-graph one">
-                <div class="radial"><canvas data-radial="security" data-value="0.82"></canvas><div class="graph-label">Score</div></div>
-              </div>
-              <div class="scan"></div>
+          <article class="hud-module impact">
+            <h2>// IMPACT</h2>
+            <div class="impact-gauges">
+              <div class="gauge-cell"><div class="ring" style="--pct:86"><span>4+</span></div><div class="graph-label">Years</div></div>
+              <div class="gauge-cell"><div class="ring" style="--pct:90"><span>15+</span></div><div class="graph-label">Cloud Apps</div></div>
+              <div class="gauge-cell"><div class="ring" style="--pct:72"><span>30%</span></div><div class="graph-label">Productivity</div></div>
+              <div class="gauge-cell"><div class="ring" style="--pct:80"><span>20</span></div><div class="graph-label">Issues/Day</div></div>
             </div>
-            <div class="bat-panel mini hud-mod">
-              <h2 data-glitch="INVENTORY">INVENTORY</h2>
-              <div class="logo-inventory">
-                <div class="logo-cell" title="Python"><img src="assets/tech_python.svg" alt="Python"></div>
-                <div class="logo-cell" title="Java"><img src="assets/tech_java.svg" alt="Java"></div>
-                <div class="logo-cell" title="TypeScript"><img src="assets/tech_typescript.svg" alt="TypeScript"></div>
-                <div class="logo-cell" title="SQL"><img src="assets/tech_sql.svg" alt="SQL"></div>
-                <div class="logo-cell" title="Flask"><img src="assets/tech_flask.svg" alt="Flask"></div>
-                <div class="logo-cell" title="Django"><img src="assets/tech_django.svg" alt="Django"></div>
-                <div class="logo-cell" title="FastAPI"><img src="assets/tech_fastapi.svg" alt="FastAPI"></div>
-                <div class="logo-cell" title="React"><img src="assets/tech_react.svg" alt="React"></div>
-                <div class="logo-cell" title="Angular"><img src="assets/tech_angular.svg" alt="Angular"></div>
-                <div class="logo-cell" title="AWS"><img src="assets/tech_aws.svg" alt="AWS"></div>
-                <div class="logo-cell" title="Lambda"><img src="assets/tech_lambda.svg" alt="Lambda"></div>
-                <div class="logo-cell" title="DynamoDB"><img src="assets/tech_dynamodb.svg" alt="DynamoDB"></div>
-                <div class="logo-cell" title="S3"><img src="assets/tech_s3.svg" alt="S3"></div>
-                <div class="logo-cell" title="Docker"><img src="assets/tech_docker.svg" alt="Docker"></div>
-                <div class="logo-cell" title="GitHub"><img src="assets/tech_github.svg" alt="GitHub"></div>
-                <div class="logo-cell" title="UE5"><img src="assets/tech_ue5.svg" alt="UE5"></div>
-                <div class="logo-cell" title="OpenCV"><img src="assets/tech_opencv.svg" alt="OpenCV"></div>
-                <div class="logo-cell" title="Pandas"><img src="assets/tech_pandas.svg" alt="Pandas"></div>
-                <div class="logo-cell" title="GCP"><img src="assets/tech_gcp.svg" alt="GCP"></div>
-                <div class="logo-cell" title="SAP"><img src="assets/tech_sap.svg" alt="SAP"></div>
-              </div>
-              <div class="scan"></div>
+          </article>
+
+          <article class="hud-module systems">
+            <h2>// SYSTEMS</h2>
+            <ul class="feed" data-rotate="Lambda, API Gateway, DynamoDB, S3, SNS/FCM"></ul>
+            <div class="hud-graph two">
+              <div class="radial"><canvas data-radial="cloud" data-value="0.88"></canvas><div class="graph-label">Cloud</div></div>
+              <div class="spark"><canvas data-spark="deploy" data-points="6,8,7,9,10,12,11,13"></canvas><div class="graph-label">Deploys</div></div>
             </div>
-          </section>
+          </article>
+
+          <article class="hud-module security">
+            <h2>// SECURITY</h2>
+            <div class="sec-body">
+              <ul class="protocol-list">
+                <li><span class="proto">JWT / OAuth2</span><span class="ok">OK</span></li>
+                <li><span class="proto">IAM</span><span class="ok">OK</span></li>
+                <li><span class="proto">HTTPS + TLS</span><span class="ok">OK</span></li>
+                <li><span class="proto">KMS at Rest</span><span class="ok">OK</span></li>
+                <li><span class="proto">Signed URLs</span><span class="ok">OK</span></li>
+              </ul>
+              <div class="radial"><canvas data-radial="security" data-value="0.82"></canvas><div class="graph-label">Score</div></div>
+            </div>
+          </article>
+
+          <article class="hud-module inventory">
+            <h2>// INVENTORY</h2>
+            <div class="logo-inventory">
+              <div class="logo-cell" title="Python"><img src="assets/tech_python.svg" alt="Python"></div>
+              <div class="logo-cell" title="Java"><img src="assets/tech_java.svg" alt="Java"></div>
+              <div class="logo-cell" title="TypeScript"><img src="assets/tech_typescript.svg" alt="TypeScript"></div>
+              <div class="logo-cell" title="SQL"><img src="assets/tech_sql.svg" alt="SQL"></div>
+              <div class="logo-cell" title="Flask"><img src="assets/tech_flask.svg" alt="Flask"></div>
+              <div class="logo-cell" title="Django"><img src="assets/tech_django.svg" alt="Django"></div>
+              <div class="logo-cell" title="FastAPI"><img src="assets/tech_fastapi.svg" alt="FastAPI"></div>
+              <div class="logo-cell" title="React"><img src="assets/tech_react.svg" alt="React"></div>
+              <div class="logo-cell" title="Angular"><img src="assets/tech_angular.svg" alt="Angular"></div>
+              <div class="logo-cell" title="AWS"><img src="assets/tech_aws.svg" alt="AWS"></div>
+              <div class="logo-cell" title="Lambda"><img src="assets/tech_lambda.svg" alt="Lambda"></div>
+              <div class="logo-cell" title="DynamoDB"><img src="assets/tech_dynamodb.svg" alt="DynamoDB"></div>
+              <div class="logo-cell" title="S3"><img src="assets/tech_s3.svg" alt="S3"></div>
+              <div class="logo-cell" title="Docker"><img src="assets/tech_docker.svg" alt="Docker"></div>
+              <div class="logo-cell" title="GitHub"><img src="assets/tech_github.svg" alt="GitHub"></div>
+              <div class="logo-cell" title="UE5"><img src="assets/tech_ue5.svg" alt="UE5"></div>
+              <div class="logo-cell" title="OpenCV"><img src="assets/tech_opencv.svg" alt="OpenCV"></div>
+              <div class="logo-cell" title="Pandas"><img src="assets/tech_pandas.svg" alt="Pandas"></div>
+              <div class="logo-cell" title="GCP"><img src="assets/tech_gcp.svg" alt="GCP"></div>
+              <div class="logo-cell" title="SAP"><img src="assets/tech_sap.svg" alt="SAP"></div>
+            </div>
+          </article>
         </div>
         <div class="hud-ticker" aria-hidden="true">
           <div class="ticker-track">
@@ -184,7 +192,7 @@
             <div class="thumb-wrap"><img class="thumb" src="assets/thumb_tracking_clean.png" alt="Tracking & Gamification"></div>
             <div class="meta">
               <span class="tag">AWS • Realtime • Mobile</span>
-              <h3>Tracking & Gamification</h3>
+              <h3>Tracking &amp; Gamification</h3>
               <p>Live routes, leaderboards, S3 snapshots, SNS/FCM, cold-start tuning.</p>
               <div class="actions"><a class="btn ghost" aria-disabled="true">Demo by request</a></div>
               <div class="tech-icons">
@@ -212,7 +220,7 @@
       <section id="panel-skills" class="panel" role="region" aria-labelledby="skills-tab">
         <div class="panel-head">
           <h1 id="skills-tab">Capabilities</h1>
-          <p class="lede">Compact category packs — expand to view all tools & frameworks.</p>
+          <p class="lede">Compact category packs — expand to view all tools &amp; frameworks.</p>
         </div>
         <div class="skill-packs">
           <article class="skill-pack">
@@ -241,7 +249,7 @@
 
           <article class="skill-pack">
             <div class="pack-hdr">
-              <div class="pack-title">Frameworks & Libraries</div>
+              <div class="pack-title">Frameworks &amp; Libraries</div>
               <div class="pack-meta">5+</div>
             </div>
             <details>
@@ -258,7 +266,7 @@
 
           <article class="skill-pack">
             <div class="pack-hdr">
-              <div class="pack-title">Cloud & DevOps</div>
+              <div class="pack-title">Cloud &amp; DevOps</div>
               <div class="pack-meta">7</div>
             </div>
             <details>
@@ -278,7 +286,7 @@
 
           <article class="skill-pack">
             <div class="pack-hdr">
-              <div class="pack-title">Security & Integrations</div>
+              <div class="pack-title">Security &amp; Integrations</div>
               <div class="pack-meta">3</div>
             </div>
             <details>
@@ -334,7 +342,7 @@
               <div class="body">
                 <ul>
                   <li>Migrated legacy .NET monolith to Python microservices, reducing maintenance cost by <b>25%</b>.</li>
-                  <li>Built REST APIs for order mgmt, billing & notifications — cut response time by <b>40%</b>.</li>
+                  <li>Built REST APIs for order mgmt, billing &amp; notifications — cut response time by <b>40%</b>.</li>
                   <li>Integrated with POS, automated invoicing — boosted efficiency by <b>30%</b>.</li>
                   <li>Implemented tests with PyTest/Postman — reduced production issues by <b>20%</b>.</li>
                   <li>Contributed to CI/CD (GitHub Actions, Docker) — sped deployment cycle from 2 weeks to 2 days.</li>
@@ -356,7 +364,7 @@
               <summary>View Details</summary>
               <div class="body">
                 <ul>
-                  <li>Designed & maintained 15+ SAP BTP & Python web apps — delivered <b>30% higher functionality</b>.</li>
+                  <li>Designed &amp; maintained 15+ SAP BTP &amp; Python web apps — delivered <b>30% higher functionality</b>.</li>
                   <li>Optimized workflows with Agile, code quality, perf tuning, accessibility, boosting productivity by <b>30%</b>.</li>
                   <li>Diagnosed 10–20 daily issues via PyCharm, Chrome DevTools, SAP Web IDE with minimal downtime.</li>
                   <li>Partnered with global teams, integrated REST/JSON/AJAX/SOAP; trained users on SAP solutions.</li>
@@ -379,8 +387,8 @@
               <summary>View Details</summary>
               <div class="body">
                 <ul>
-                  <li>Completed 6-month TCS Xplore & ILP training; passed Elevate Wings 1 exam in Python.</li>
-                  <li>Built SAP Cloud Apps with UI5 & SQL DB; gained expertise in APIs, admin, & Agile cycles.</li>
+                  <li>Completed 6-month TCS Xplore &amp; ILP training; passed Elevate Wings 1 exam in Python.</li>
+                  <li>Built SAP Cloud Apps with UI5 &amp; SQL DB; gained expertise in APIs, admin, &amp; Agile cycles.</li>
                 </ul>
               </div>
             </details>
@@ -420,7 +428,7 @@
                 <ul>
                   <li>Harvard CS50’s Intro to AI with Python</li>
                   <li>Microsoft: Fundamentals of ML, Azure AI Fundamentals, Azure AI Services</li>
-                  <li>SAP Cloud Platform & Analytics Cloud (Udemy), SAP Basis Admin</li>
+                  <li>SAP Cloud Platform &amp; Analytics Cloud (Udemy), SAP Basis Admin</li>
                 </ul>
               </div>
             </details>
@@ -428,7 +436,7 @@
 
           <article class="mission">
             <div class="hdr">
-              <div class="title">Trainings & Achievements</div>
+              <div class="title">Trainings &amp; Achievements</div>
               <div class="meta">2018 – 2021</div>
             </div>
             <div class="badges">
@@ -449,7 +457,7 @@
         </div>
       </section>
 
-      <!-- ACHIEVEMENTS (Commendations) -->
+      <!-- ACHIEVEMENTS -->
       <section id="panel-achievements" class="panel" role="region" aria-labelledby="achievements-tab">
         <div class="panel-head">
           <h1 id="achievements-tab">Commendations</h1>
@@ -459,7 +467,7 @@
         <div class="commend-grid">
           <article class="commend-card">
             <div class="c-ribbon">SAP</div>
-            <div class="c-title">SAP BTP & Extension Suite</div>
+            <div class="c-title">SAP BTP &amp; Extension Suite</div>
             <div class="c-meta"><span class="issuer">SAP</span><span class="dot">•</span><span class="year">2022</span></div>
             <div class="c-tags"><span>Cloud Platform</span><span>Integration</span><span>Extensions</span></div>
           </article>
@@ -553,6 +561,8 @@
         </div>
         <div class="contact-hint">Tip: Press <span class="glyph a">A</span> on a card to open.</div>
       </section>
+    </section>
+  </main>
 
   <footer class="footer">© <span id="year"></span> Gaurav Vasan • HUD</footer>
 
