@@ -78,19 +78,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function rs(){ c.width=innerWidth*dpr; c.height=innerHeight*dpr; }
     rs(); addEventListener('resize', rs);
     const ctx = c.getContext('2d');
-    const dots = Array.from({length: 36}, ()=> ({
-      x: Math.random()*c.width, y: Math.random()*c.height, vx: (Math.random()*0.35+0.08)*dpr, t: Math.random()*Math.PI*2, r: (Math.random()*1.4+0.6)*dpr
+    const bats = Array.from({length: 24}, ()=> ({
+      x: Math.random()*c.width, y: Math.random()*c.height*0.5+20*dpr, vx: (Math.random()*0.7+0.3)*dpr, amp: 6*dpr+Math.random()*6*dpr, t: Math.random()*Math.PI*2
     }));
     function loop(){
       ctx.clearRect(0,0,c.width,c.height);
-      dots.forEach(b=>{
-        b.t += 0.03;
-        b.x += b.vx; b.y += Math.sin(b.t)*0.25;
-        if(b.x > c.width+10*dpr){ b.x = -10*dpr; b.y = Math.random()*c.height; }
-        ctx.fillStyle = 'rgba(215,30,43,0.45)';
+      bats.forEach(b=>{
+        b.t += 0.08;
+        b.x += b.vx; b.y += Math.sin(b.t)*0.8;
+        if(b.x > c.width+20*dpr){ b.x = -40*dpr; b.y = Math.random()*c.height*0.5+20*dpr; }
+        ctx.save();
+        ctx.translate(b.x, b.y + Math.sin(b.t)*b.amp*0.02);
+        ctx.fillStyle = 'rgba(215,30,43,0.9)';
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+        ctx.moveTo(-10*dpr,0); ctx.quadraticCurveTo(-2*dpr,-6*dpr,0,-2*dpr); ctx.quadraticCurveTo(2*dpr,-6*dpr,10*dpr,0);
+        ctx.quadraticCurveTo(2*dpr,4*dpr,0,2*dpr); ctx.quadraticCurveTo(-2*dpr,4*dpr,-10*dpr,0);
         ctx.fill();
+        ctx.restore();
       });
       requestAnimationFrame(loop);
     }
@@ -198,7 +202,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* HUD panels stay visible — no cycle */
+const panels = document.querySelectorAll('.bat-panel');
+let idx = 0;
+
+function cyclePanels() {
+  panels.forEach((p,i)=> p.style.display = (i===idx ? 'block':'none'));
+  idx = (idx + 1) % panels.length;
+}
+setInterval(cyclePanels, 4000); // rotate every 4s
 
 // ===== Bat HUD mini-graphs (radial + sparkline) =====
 (function(){

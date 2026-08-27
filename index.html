@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gaurav Vasan — Portfolio</title>
-  <meta name="description" content="Technical HUD portfolio: Python, AWS, UE5.">
+  <meta name="description" content="Arkham-inspired AAA portfolio with cinematic UI.">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -50,35 +50,28 @@
       <!-- HOME -->
       <section id="panel-home" class="panel active" role="region" aria-labelledby="home-tab">
         <div class="hero-grid">
+          <!-- Left HUD -->
           <section class="hud-col left">
-            <div class="bat-panel mini hud-mod">
+            <div class="bat-panel mini">
               <h2 data-glitch="IMPACT">IMPACT</h2>
-              <div class="impact-gauges">
-                <div class="gauge-cell"><div class="ring" style="--pct:86"><span>4+</span></div><div class="graph-label">Years</div></div>
-                <div class="gauge-cell"><div class="ring" style="--pct:90"><span>15+</span></div><div class="graph-label">Cloud Apps</div></div>
-                <div class="gauge-cell"><div class="ring" style="--pct:72"><span>30%</span></div><div class="graph-label">Productivity</div></div>
-                <div class="gauge-cell"><div class="ring" style="--pct:80"><span>20</span></div><div class="graph-label">Issues/Day</div></div>
-              </div>
+              <div class="metric"><span class="big">4+</span><span>Years</span></div>
+              <div class="metric"><span class="big">15+</span><span>Cloud Apps</span></div>
+              <div class="metric"><span class="big">30% ↑</span><span>Productivity</span></div>
               <div class="scan"></div>
             </div>
-            <div class="bat-panel mini hud-mod">
-              <h2 data-glitch="SYSTEMS">SYSTEMS</h2>
+            <div class="bat-panel mini">
+              <h2 data-glitch="CLOUD">CLOUD</h2>
               <ul class="feed" data-rotate="Lambda, API Gateway, DynamoDB, S3, SNS/FCM"></ul>
-              <div class="hud-graph two">
-                <div class="radial"><canvas data-radial="cloud" data-value="0.88"></canvas><div class="graph-label">Cloud</div></div>
+              <div class="hud-graph">
+                <div class="radial"><canvas data-radial="cloud" data-value="0.88"></canvas><div class="graph-label">Proficiency</div></div>
                 <div class="spark"><canvas data-spark="deploy" data-points="6,8,7,9,10,12,11,13"></canvas><div class="graph-label">Deploys</div></div>
               </div>
               <div class="scan"></div>
             </div>
           </section>
 
+          <!-- Center -->
           <section class="hud-core">
-            <div class="reticle" aria-hidden="true">
-              <span class="tick n">000</span>
-              <span class="tick e">090</span>
-              <span class="tick s">180</span>
-              <span class="tick w">270</span>
-            </div>
             <h1 class="neon-title">GAURAV <span>VASAN</span></h1>
             <p class="type-line" data-rotate='[
               "Software Engineer • Python • AWS • UE5",
@@ -89,61 +82,29 @@
               <button class="btn primary cta" data-goto="projects">View Projects</button>
               <a class="btn ghost cta" href="assets/Gaurav_Vasan_Resume.pdf" download>Download Resume</a>
             </div>
-            <div class="press-start">PRESS ENTER</div>
+            <div class="press-start">PRESS ENTER ⏎</div>
           </section>
 
+          <!-- Right HUD -->
           <section class="hud-col right">
-            <div class="bat-panel mini hud-mod">
+            <div class="bat-panel mini">
               <h2 data-glitch="SECURITY">SECURITY</h2>
               <ul class="feed" data-rotate="JWT / OAuth2, IAM, HTTPS + TLS, KMS at Rest, Signed URLs"></ul>
-              <div class="hud-graph one">
+              <div class="hud-graph">
                 <div class="radial"><canvas data-radial="security" data-value="0.82"></canvas><div class="graph-label">Score</div></div>
+                <div class="spark"><canvas data-spark="errors" data-points="9,8,7,5,4,3,3,2,1,1"></canvas><div class="graph-label">Errors</div></div>
               </div>
               <div class="scan"></div>
             </div>
-            <div class="bat-panel mini hud-mod">
-              <h2 data-glitch="INVENTORY">INVENTORY</h2>
-              <div class="logo-inventory">
-                <div class="logo-cell" title="Python"><img src="assets/tech_python.svg" alt="Python"></div>
-                <div class="logo-cell" title="Java"><img src="assets/tech_java.svg" alt="Java"></div>
-                <div class="logo-cell" title="TypeScript"><img src="assets/tech_typescript.svg" alt="TypeScript"></div>
-                <div class="logo-cell" title="SQL"><img src="assets/tech_sql.svg" alt="SQL"></div>
-                <div class="logo-cell" title="Flask"><img src="assets/tech_flask.svg" alt="Flask"></div>
-                <div class="logo-cell" title="Django"><img src="assets/tech_django.svg" alt="Django"></div>
-                <div class="logo-cell" title="FastAPI"><img src="assets/tech_fastapi.svg" alt="FastAPI"></div>
-                <div class="logo-cell" title="React"><img src="assets/tech_react.svg" alt="React"></div>
-                <div class="logo-cell" title="Angular"><img src="assets/tech_angular.svg" alt="Angular"></div>
-                <div class="logo-cell" title="AWS"><img src="assets/tech_aws.svg" alt="AWS"></div>
-                <div class="logo-cell" title="Lambda"><img src="assets/tech_lambda.svg" alt="Lambda"></div>
-                <div class="logo-cell" title="DynamoDB"><img src="assets/tech_dynamodb.svg" alt="DynamoDB"></div>
-                <div class="logo-cell" title="S3"><img src="assets/tech_s3.svg" alt="S3"></div>
-                <div class="logo-cell" title="Docker"><img src="assets/tech_docker.svg" alt="Docker"></div>
-                <div class="logo-cell" title="GitHub"><img src="assets/tech_github.svg" alt="GitHub"></div>
-                <div class="logo-cell" title="UE5"><img src="assets/tech_ue5.svg" alt="UE5"></div>
-                <div class="logo-cell" title="OpenCV"><img src="assets/tech_opencv.svg" alt="OpenCV"></div>
-                <div class="logo-cell" title="Pandas"><img src="assets/tech_pandas.svg" alt="Pandas"></div>
-                <div class="logo-cell" title="GCP"><img src="assets/tech_gcp.svg" alt="GCP"></div>
-                <div class="logo-cell" title="SAP"><img src="assets/tech_sap.svg" alt="SAP"></div>
+            <div class="bat-panel mini">
+              <h2 data-glitch="TOOLING">TOOLING</h2>
+              <div class="bat-chips">
+                <span class="bat-chip">Python</span><span class="bat-chip">Flask</span><span class="bat-chip">FastAPI</span>
+                <span class="bat-chip">React</span><span class="bat-chip">Docker</span><span class="bat-chip">GH Actions</span>
               </div>
               <div class="scan"></div>
             </div>
           </section>
-        </div>
-        <div class="hud-ticker" aria-hidden="true">
-          <div class="ticker-track">
-            <span>SYSTEM ONLINE</span>
-            <span>TOUGE (DART)</span>
-            <span>UE5 PROTOTYPE</span>
-            <span>TRACKING PLATFORM</span>
-            <span>SECURE MESSAGING</span>
-            <span>GITHUB VIZ</span>
-            <span>SYSTEM ONLINE</span>
-            <span>TOUGE (DART)</span>
-            <span>UE5 PROTOTYPE</span>
-            <span>TRACKING PLATFORM</span>
-            <span>SECURE MESSAGING</span>
-            <span>GITHUB VIZ</span>
-          </div>
         </div>
       </section>
 
@@ -529,7 +490,7 @@
               <div class="csub">gauravvasan121@gmail.com</div>
             </div>
           </a>
-          <a class="contact-card" href="tel:+18478047120">
+          <a class="contact-card" href="tel:+1-000-000-0000">
             <img src="assets/ic_phone.svg" alt="" class="cicon"/>
             <div class="cmeta">
               <div class="ctitle">Phone</div>
@@ -554,7 +515,7 @@
         <div class="contact-hint">Tip: Press <span class="glyph a">A</span> on a card to open.</div>
       </section>
 
-  <footer class="footer">© <span id="year"></span> Gaurav Vasan • HUD</footer>
+  <footer class="footer">© <span id="year"></span> Gaurav Vasan • Arkham-inspired menu</footer>
 
   <audio id="sfx-move" preload="auto" src="assets/move.wav"></audio>
   <audio id="sfx-confirm" preload="auto" src="assets/confirm.wav"></audio>
