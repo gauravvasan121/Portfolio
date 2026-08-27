@@ -64,6 +64,7 @@
               <span class="tick e">090</span>
               <span class="tick s">180</span>
               <span class="tick w">270</span>
+              <span class="radar-sweep"></span>
             </div>
             <h1 id="home-tab" class="neon-title">GAURAV <span>VASAN</span></h1>
             <p class="type-line" data-rotate='[
@@ -81,10 +82,10 @@
           <article class="hud-module impact">
             <h2>// IMPACT</h2>
             <div class="impact-gauges">
-              <div class="gauge-cell"><div class="ring" style="--pct:86"><span>4+</span></div><div class="graph-label">Years</div></div>
-              <div class="gauge-cell"><div class="ring" style="--pct:90"><span>15+</span></div><div class="graph-label">Cloud Apps</div></div>
-              <div class="gauge-cell"><div class="ring" style="--pct:72"><span>30%</span></div><div class="graph-label">Productivity</div></div>
-              <div class="gauge-cell"><div class="ring" style="--pct:80"><span>20</span></div><div class="graph-label">Issues/Day</div></div>
+              <div class="gauge-cell" tabindex="0" data-name="Years" data-detail="TCS + Simba Cleaners · 2020–present"><div class="ring" data-pct="86" style="--pct:0"><span data-to="4" data-suffix="+">4+</span></div><div class="graph-label">Years</div></div>
+              <div class="gauge-cell" tabindex="0" data-name="Cloud Apps" data-detail="15+ SAP BTP &amp; Python web apps shipped"><div class="ring" data-pct="90" style="--pct:0"><span data-to="15" data-suffix="+">15+</span></div><div class="graph-label">Cloud Apps</div></div>
+              <div class="gauge-cell" tabindex="0" data-name="Productivity" data-detail="Workflow / API work, ~30% lift"><div class="ring" data-pct="72" style="--pct:0"><span data-to="30" data-suffix="%">30%</span></div><div class="graph-label">Productivity</div></div>
+              <div class="gauge-cell" tabindex="0" data-name="Issues/Day" data-detail="10–20 prod issues diagnosed daily at TCS"><div class="ring" data-pct="80" style="--pct:0"><span data-to="20" data-suffix="">20</span></div><div class="graph-label">Issues/Day</div></div>
             </div>
           </article>
 
@@ -92,8 +93,8 @@
             <h2>// SYSTEMS</h2>
             <ul class="feed" data-rotate="Lambda, API Gateway, DynamoDB, S3, SNS/FCM"></ul>
             <div class="hud-graph two">
-              <div class="radial"><canvas data-radial="cloud" data-value="0.88"></canvas><div class="graph-label">Cloud</div></div>
-              <div class="spark"><canvas data-spark="deploy" data-points="6,8,7,9,10,12,11,13"></canvas><div class="graph-label">Deploys</div></div>
+              <div class="radial" tabindex="0" data-name="Cloud" data-detail="Cloud stack proficiency"><canvas data-radial="cloud" data-value="0.88"></canvas><div class="graph-label">Cloud</div></div>
+              <div class="spark" tabindex="0" data-name="Deploys" data-detail="Deploys trend, last 30 days"><canvas data-spark="deploy" data-points="6,8,7,9,10,12,11,13"></canvas><div class="graph-label">Deploys</div></div>
             </div>
           </article>
 
@@ -101,42 +102,43 @@
             <h2>// SECURITY</h2>
             <div class="sec-body">
               <ul class="protocol-list">
-                <li><span class="proto">JWT / OAuth2</span><span class="ok">OK</span></li>
-                <li><span class="proto">IAM</span><span class="ok">OK</span></li>
-                <li><span class="proto">HTTPS + TLS</span><span class="ok">OK</span></li>
-                <li><span class="proto">KMS at Rest</span><span class="ok">OK</span></li>
-                <li><span class="proto">Signed URLs</span><span class="ok">OK</span></li>
+                <li tabindex="0" data-name="JWT / OAuth2" data-detail="Signed JWTs + OAuth2 on API Gateway and app routes"><span class="proto">JWT / OAuth2</span><span class="ok">OK</span></li>
+                <li tabindex="0" data-name="IAM" data-detail="Least-privilege IAM roles for Lambda, S3, and DynamoDB"><span class="proto">IAM</span><span class="ok">OK</span></li>
+                <li tabindex="0" data-name="HTTPS + TLS" data-detail="TLS 1.2+ terminated on every public endpoint"><span class="proto">HTTPS + TLS</span><span class="ok">OK</span></li>
+                <li tabindex="0" data-name="KMS at Rest" data-detail="AWS KMS encryption for DynamoDB and S3 payloads"><span class="proto">KMS at Rest</span><span class="ok">OK</span></li>
+                <li tabindex="0" data-name="Signed URLs" data-detail="Time-boxed S3 / CloudFront signed URLs for private files"><span class="proto">Signed URLs</span><span class="ok">OK</span></li>
               </ul>
-              <div class="radial"><canvas data-radial="security" data-value="0.82"></canvas><div class="graph-label">Score</div></div>
+              <div class="radial" tabindex="0" data-name="Score" data-detail="Auth, IAM, TLS, KMS coverage across shipped APIs"><canvas data-radial="security" data-value="0.82"></canvas><div class="graph-label">Score</div></div>
             </div>
           </article>
 
           <article class="hud-module inventory">
             <h2>// INVENTORY</h2>
             <div class="logo-inventory">
-              <div class="logo-cell" title="Python"><img src="assets/tech_python.svg" alt="Python"></div>
-              <div class="logo-cell" title="Java"><img src="assets/tech_java.svg" alt="Java"></div>
-              <div class="logo-cell" title="TypeScript"><img src="assets/tech_typescript.svg" alt="TypeScript"></div>
-              <div class="logo-cell" title="SQL"><img src="assets/tech_sql.svg" alt="SQL"></div>
-              <div class="logo-cell" title="Flask"><img src="assets/tech_flask.svg" alt="Flask"></div>
-              <div class="logo-cell" title="Django"><img src="assets/tech_django.svg" alt="Django"></div>
-              <div class="logo-cell" title="FastAPI"><img src="assets/tech_fastapi.svg" alt="FastAPI"></div>
-              <div class="logo-cell" title="React"><img src="assets/tech_react.svg" alt="React"></div>
-              <div class="logo-cell" title="Angular"><img src="assets/tech_angular.svg" alt="Angular"></div>
-              <div class="logo-cell" title="AWS"><img src="assets/tech_aws.svg" alt="AWS"></div>
-              <div class="logo-cell" title="Lambda"><img src="assets/tech_lambda.svg" alt="Lambda"></div>
-              <div class="logo-cell" title="DynamoDB"><img src="assets/tech_dynamodb.svg" alt="DynamoDB"></div>
-              <div class="logo-cell" title="S3"><img src="assets/tech_s3.svg" alt="S3"></div>
-              <div class="logo-cell" title="Docker"><img src="assets/tech_docker.svg" alt="Docker"></div>
-              <div class="logo-cell" title="GitHub"><img src="assets/tech_github.svg" alt="GitHub"></div>
-              <div class="logo-cell" title="UE5"><img src="assets/tech_ue5.svg" alt="UE5"></div>
-              <div class="logo-cell" title="OpenCV"><img src="assets/tech_opencv.svg" alt="OpenCV"></div>
-              <div class="logo-cell" title="Pandas"><img src="assets/tech_pandas.svg" alt="Pandas"></div>
-              <div class="logo-cell" title="GCP"><img src="assets/tech_gcp.svg" alt="GCP"></div>
-              <div class="logo-cell" title="SAP"><img src="assets/tech_sap.svg" alt="SAP"></div>
+              <div class="logo-cell" tabindex="0" data-name="Python" data-cat="Language"><img src="assets/tech_python.svg" alt="Python"></div>
+              <div class="logo-cell" tabindex="0" data-name="Java" data-cat="Language"><img src="assets/tech_java.svg" alt="Java"></div>
+              <div class="logo-cell" tabindex="0" data-name="TypeScript" data-cat="Language"><img src="assets/tech_typescript.svg" alt="TypeScript"></div>
+              <div class="logo-cell" tabindex="0" data-name="SQL" data-cat="Language"><img src="assets/tech_sql.svg" alt="SQL"></div>
+              <div class="logo-cell" tabindex="0" data-name="Flask" data-cat="Framework"><img src="assets/tech_flask.svg" alt="Flask"></div>
+              <div class="logo-cell" tabindex="0" data-name="Django" data-cat="Framework"><img src="assets/tech_django.svg" alt="Django"></div>
+              <div class="logo-cell" tabindex="0" data-name="FastAPI" data-cat="Framework"><img src="assets/tech_fastapi.svg" alt="FastAPI"></div>
+              <div class="logo-cell" tabindex="0" data-name="React" data-cat="Framework"><img src="assets/tech_react.svg" alt="React"></div>
+              <div class="logo-cell" tabindex="0" data-name="Angular" data-cat="Framework"><img src="assets/tech_angular.svg" alt="Angular"></div>
+              <div class="logo-cell" tabindex="0" data-name="AWS" data-cat="Cloud"><img src="assets/tech_aws.svg" alt="AWS"></div>
+              <div class="logo-cell" tabindex="0" data-name="Lambda" data-cat="Cloud"><img src="assets/tech_lambda.svg" alt="Lambda"></div>
+              <div class="logo-cell" tabindex="0" data-name="DynamoDB" data-cat="Data"><img src="assets/tech_dynamodb.svg" alt="DynamoDB"></div>
+              <div class="logo-cell" tabindex="0" data-name="S3" data-cat="Cloud"><img src="assets/tech_s3.svg" alt="S3"></div>
+              <div class="logo-cell" tabindex="0" data-name="Docker" data-cat="Cloud"><img src="assets/tech_docker.svg" alt="Docker"></div>
+              <div class="logo-cell" tabindex="0" data-name="GitHub" data-cat="Cloud"><img src="assets/tech_github.svg" alt="GitHub"></div>
+              <div class="logo-cell" tabindex="0" data-name="UE5" data-cat="Game"><img src="assets/tech_ue5.svg" alt="UE5"></div>
+              <div class="logo-cell" tabindex="0" data-name="OpenCV" data-cat="Data"><img src="assets/tech_opencv.svg" alt="OpenCV"></div>
+              <div class="logo-cell" tabindex="0" data-name="Pandas" data-cat="Data"><img src="assets/tech_pandas.svg" alt="Pandas"></div>
+              <div class="logo-cell" tabindex="0" data-name="GCP" data-cat="Cloud"><img src="assets/tech_gcp.svg" alt="GCP"></div>
+              <div class="logo-cell" tabindex="0" data-name="SAP" data-cat="Cloud"><img src="assets/tech_sap.svg" alt="SAP"></div>
             </div>
           </article>
         </div>
+        <div id="hud-tip" hidden role="tooltip"></div>
         <div class="hud-ticker" aria-hidden="true">
           <div class="ticker-track">
             <span>SYSTEM ONLINE</span>
