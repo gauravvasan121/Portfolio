@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursor = $('.menu .cursor');
   const sfx = { move: $('#sfx-move'), confirm: $('#sfx-confirm'), back: $('#sfx-back') };
 
-  // ---------- Audio/Theme/Year
+  // ---------- Audio / year
   function play(name){
     const on = JSON.parse(localStorage.getItem('audioOn') ?? 'true');
     if(!on) return;
@@ -16,21 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
     try{ a.currentTime=0; a.play(); }catch{}
   }
   const btnAudio = $('#btn-audio');
-  const btnTheme = $('#btn-theme');
   function setAudio(on){
     localStorage.setItem('audioOn', JSON.stringify(on));
     btnAudio?.setAttribute('aria-pressed', String(on));
+    const label = btnAudio?.querySelector('span');
+    if(label) label.textContent = on ? 'Sound' : 'Muted';
   }
   setAudio(JSON.parse(localStorage.getItem('audioOn') ?? 'true'));
   btnAudio?.addEventListener('click', ()=> setAudio(!JSON.parse(localStorage.getItem('audioOn') ?? 'true')));
-  btnTheme?.addEventListener('click', ()=> document.documentElement.classList.toggle('light'));
-  $('#year') && ($('#year').textContent = new Date().getFullYear());
+
+  const yearEl = $('#year');
+  if(yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   // ---------- Cursor + Panels
   let sel = 0;
   function updateCursor(){
     if(!cursor) return;
     const el = menuItems[sel];
+    if(!el) return;
     menuItems.forEach(mi => mi.classList.toggle('selected', mi === el));
     const r = el.getBoundingClientRect(), pr = el.parentElement.getBoundingClientRect();
     cursor.style.transform = `translateY(${r.top - pr.top - 4}px)`;
@@ -45,108 +48,78 @@ document.addEventListener('DOMContentLoaded', () => {
     if(id !== 'home') play('confirm'); else play('back');
     if(location.hash !== `#${id}`) history.replaceState(null, '', `#${id}`);
     if(id === 'experience') startKPI();
+    if(id === 'home') requestAnimationFrame(() => requestAnimationFrame(() => bootHomeHud()));
+    else if (typeof stopHudLoops === 'function') stopHudLoops();
   }
 
-  // ---------- Menu events
   menuItems.forEach((item, i)=>{
     item.addEventListener('mouseenter', ()=>{ sel=i; updateCursor(); });
     item.addEventListener('click', ()=>{ sel=i; updateCursor(); openPanel(item.dataset.panel); });
   });
 
-  // ---------- Global keyboard (classic)
   window.addEventListener('keydown', (e)=>{
     if(e.code==='ArrowUp' || e.code==='KeyW'){ e.preventDefault(); sel=(sel-1+menuItems.length)%menuItems.length; updateCursor(); play('move'); }
     if(e.code==='ArrowDown' || e.code==='KeyS'){ e.preventDefault(); sel=(sel+1)%menuItems.length; updateCursor(); play('move'); }
-    if(e.code==='Enter'){ e.preventDefault(); menuItems[sel].click(); }
-    if(e.code==='Escape'){ e.preventDefault(); openPanel('home'); }
+    if(e.code==='Enter'){
+      e.preventDefault();
+      if($('#panel-home')?.classList.contains('active')){
+        const idx = menuItems.findIndex(mi=> mi.dataset.panel==='projects');
+        if(idx>=0){ sel=idx; updateCursor(); openPanel('projects'); }
+        return;
+      }
+      menuItems[sel]?.click();
+    }
+    if(e.code==='Escape'){ e.preventDefault(); openPanel('home'); sel = menuItems.findIndex(mi=> mi.dataset.panel==='home'); updateCursor(); }
     if(e.code==='KeyM'){ setAudio(!JSON.parse(localStorage.getItem('audioOn') ?? 'true')); }
-    if(e.code==='KeyT'){ document.documentElement.classList.toggle('light'); }
   });
 
-  // ---------- Hash routing
   window.addEventListener('hashchange', ()=> {
     const id = (location.hash || '#home').slice(1);
     const idx = menuItems.findIndex(mi => mi.dataset.panel === id);
     if(idx >= 0){ sel = idx; updateCursor(); openPanel(id); }
   });
 
-  // ---------- Hero bats (restored)
-  (function(){
-    const c = document.getElementById('hero-bats');
-    if(!c) return;
-    const dpr = Math.min(devicePixelRatio||1, 2);
-    function rs(){ c.width=innerWidth*dpr; c.height=innerHeight*dpr; }
-    rs(); addEventListener('resize', rs);
-    const ctx = c.getContext('2d');
-    const bats = Array.from({length: 24}, ()=> ({
-      x: Math.random()*c.width, y: Math.random()*c.height*0.5+20*dpr, vx: (Math.random()*0.7+0.3)*dpr, amp: 6*dpr+Math.random()*6*dpr, t: Math.random()*Math.PI*2
-    }));
-    function loop(){
-      ctx.clearRect(0,0,c.width,c.height);
-      bats.forEach(b=>{
-        b.t += 0.08;
-        b.x += b.vx; b.y += Math.sin(b.t)*0.8;
-        if(b.x > c.width+20*dpr){ b.x = -40*dpr; b.y = Math.random()*c.height*0.5+20*dpr; }
-        ctx.save();
-        ctx.translate(b.x, b.y + Math.sin(b.t)*b.amp*0.02);
-        ctx.fillStyle = 'rgba(215,30,43,0.9)';
-        ctx.beginPath();
-        ctx.moveTo(-10*dpr,0); ctx.quadraticCurveTo(-2*dpr,-6*dpr,0,-2*dpr); ctx.quadraticCurveTo(2*dpr,-6*dpr,10*dpr,0);
-        ctx.quadraticCurveTo(2*dpr,4*dpr,0,2*dpr); ctx.quadraticCurveTo(-2*dpr,4*dpr,-10*dpr,0);
-        ctx.fill();
-        ctx.restore();
-      });
-      requestAnimationFrame(loop);
-    }
-    loop();
-  })();
-
-  // ---------- Typewriter subline (restored)
+  // ---------- Typewriter subline
   (function(){
     const el = document.querySelector('.type-line');
     if(!el) return;
-    const lines = JSON.parse(el.dataset.rotate || '[]');
-    let i=0, txt='', removing=false;
+    let lines = [];
+    try{ lines = JSON.parse(el.dataset.rotate || '[]'); }catch{ lines = []; }
+    if(!lines.length) return;
+    let i=0;
+    function setLine(s){
+      if(el.childNodes[0]?.nodeType===3){ el.childNodes[0].textContent = s+' '; }
+      else { el.insertBefore(document.createTextNode(s+' '), el.firstChild); }
+    }
     function tick(){
-      const full = lines[i % lines.length];
-      txt = removing ? full.slice(0, txt.length-1) : full.slice(0, txt.length+1);
-      if(el.childNodes[0]?.nodeType===3){ el.childNodes[0].textContent = txt+' '; }
-      else { el.insertBefore(document.createTextNode(txt+' '), el.firstChild); }
-      if(!removing && txt===full){ removing=true; setTimeout(tick, 1200); return; }
-      if(removing && txt===''){ removing=false; i++; }
-      setTimeout(tick, removing ? 22 : 30);
+      setLine(lines[i % lines.length]);
+      i++;
+      setTimeout(tick, 2200);
     }
     tick();
   })();
 
-  // ---------- Experience KPI (restored)
+  // ---------- Experience KPI
   window.startKPI = function(){
     const nums = document.querySelectorAll('.kpi .num');
     nums.forEach(el=>{
       const target = Number(el.dataset.target || '0');
-      let cur = 0; const dur = 900; const start = performance.now();
+      const dur = 900; const start = performance.now();
       function step(t){
         const p = Math.min(1, (t - start) / dur);
-        cur = Math.floor(target * p + (p<1?0:0));
-        el.textContent = cur;
+        el.textContent = Math.floor(target * p);
         if(p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
     });
   };
 
-  // ---------- Hero CTA + Enter opens Projects
+  // ---------- Hero CTA (projects)
   $$('.cta').forEach(b => b.addEventListener('click', ()=> {
     const id = b.dataset.goto || 'projects';
     const idx = menuItems.findIndex(mi=> mi.dataset.panel===id);
     if(idx>=0){ sel=idx; updateCursor(); openPanel(id); }
   }));
-  window.addEventListener('keydown', (e)=>{
-    if(e.code==='Enter' && $('#panel-home')?.classList.contains('active')){
-      const idx = menuItems.findIndex(mi=> mi.dataset.panel==='projects');
-      if(idx>=0){ sel=idx; updateCursor(); openPanel('projects'); }
-    }
-  });
 
   // ---------- Init
   const startId = (location.hash || '#home').slice(1);
@@ -156,123 +129,266 @@ document.addEventListener('DOMContentLoaded', () => {
   openPanel(menuItems[sel].dataset.panel);
 });
 
+/* HUD panels stay visible — no cycle */
 
-// ——— Hero insight counters + slide dots ———
-(function(){
-  const hero = document.getElementById('panel-home'); if(!hero) return;
+const hudMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+const hudReduce = () => hudMQ.matches;
+const hudAccent = () => (getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#d71e2b').trim() || '#d71e2b';
 
-  // Count-up just for the numbers in the Impact slide
-  const nums = hero.querySelectorAll('.insights .num');
-  let ran = false;
-  function runCounters(){
-    if(ran) return; ran = true;
-    nums.forEach(el=>{
-      const target = Number(el.dataset.target||'0'); let cur=0; const start=performance.now(), dur=900;
-      function step(t){ const p=Math.min(1,(t-start)/dur); cur=Math.floor(target*p); el.textContent=cur; if(p<1) requestAnimationFrame(step); }
-      requestAnimationFrame(step);
-    });
-  }
+const hudLoops = {
+  gaugeRaf: [],
+  radialRaf: [],
+  sparkTimers: [],
+  logoTimer: null,
+  sparkPoints: new Map()
+};
+let hudInventoryHover = false;
 
-  // Start counters when Home is active on load or when returning to Home
-  const _openPanel = window.openPanel;
-  if(typeof _openPanel === 'function'){
-    window.openPanel = function(id){
-      _openPanel(id);
-      if(id === 'home') runCounters();
-    };
-  }
-  if(hero.classList.contains('active')) runCounters();
-
-  // Slide dots (desktop)
-  const dots = Array.from(hero.querySelectorAll('.insight-dots .dot'));
-  const slides = Array.from(hero.querySelectorAll('.insights .slide'));
-  function showSlide(n){
-    slides.forEach(s => s.classList.toggle('active', s.dataset.slide === String(n)));
-    dots.forEach(d => d.classList.toggle('active', d.dataset.goto === String(n)));
-  }
-  dots.forEach(d => d.addEventListener('click', ()=> showSlide(d.dataset.goto)));
-
-  // Keyboard: ←/→ switches slides (desktop only)
-  window.addEventListener('keydown', (e)=>{
-    if(!hero.classList.contains('active')) return;
-    if(matchMedia('(max-width: 900px)').matches) return; // stacked on mobile
-    const cur = Number((slides.find(s=>s.classList.contains('active'))?.dataset.slide)||1);
-    if(e.code==='ArrowLeft'){ e.preventDefault(); showSlide(Math.max(1, cur-1)); }
-    if(e.code==='ArrowRight'){ e.preventDefault(); showSlide(Math.min(3, cur+1)); }
-  });
-})();
-
-const panels = document.querySelectorAll('.bat-panel');
-let idx = 0;
-
-function cyclePanels() {
-  panels.forEach((p,i)=> p.style.display = (i===idx ? 'block':'none'));
-  idx = (idx + 1) % panels.length;
+function setGaugePct(ring, pct){
+  const v = Math.max(0, Math.min(100, Number(pct) || 0));
+  ring.style.setProperty('--pct', String(v));
+  ring.style.background = `conic-gradient(var(--accent) ${v}%, rgba(255,255,255,.08) 0)`;
 }
-setInterval(cyclePanels, 4000); // rotate every 4s
 
-// ===== Bat HUD mini-graphs (radial + sparkline) =====
-(function(){
+function stopHudLoops(){
+  hudLoops.gaugeRaf.forEach(id => cancelAnimationFrame(id));
+  hudLoops.radialRaf.forEach(id => cancelAnimationFrame(id));
+  hudLoops.sparkTimers.forEach(id => clearInterval(id));
+  hudLoops.gaugeRaf = [];
+  hudLoops.radialRaf = [];
+  hudLoops.sparkTimers = [];
+  if(hudLoops.logoTimer){ clearInterval(hudLoops.logoTimer); hudLoops.logoTimer = null; }
+}
+
+function easeOutCubic(p){ return 1 - Math.pow(1 - p, 3); }
+
+function replayCssIntros(){
+  if(hudReduce()) return;
+  const els = [
+    ...document.querySelectorAll('.hud-module'),
+    ...document.querySelectorAll('.logo-cell')
+  ];
+  els.forEach(el => { el.style.animation = 'none'; });
+  void document.querySelector('.hud-stage')?.offsetWidth;
+  els.forEach(el => { el.style.animation = ''; });
+}
+
+function animateGauges(){
+  hudLoops.gaugeRaf.forEach(id => cancelAnimationFrame(id));
+  hudLoops.gaugeRaf = [];
+  const rings = document.querySelectorAll('.gauge-cell .ring');
+  rings.forEach((ring, idx) => {
+    const span = ring.querySelector('span');
+    const targetPct = Number(ring.dataset.pct || '0');
+    const to = Number(span?.dataset.to || '0');
+    const suffix = span?.dataset.suffix ?? '';
+    if(hudReduce() || !span){
+      setGaugePct(ring, targetPct);
+      if(span) span.textContent = to + suffix;
+      return;
+    }
+    setGaugePct(ring, 0);
+    span.textContent = to + suffix;
+    const delay = idx * 40;
+    const dur = 520;
+    const t0 = performance.now();
+    function step(now){
+      const p = Math.min(1, Math.max(0, (now - t0 - delay) / dur));
+      const e = easeOutCubic(p);
+      setGaugePct(ring, targetPct * e);
+      if(span) span.textContent = Math.round(to * e) + suffix;
+      if(p < 1){
+        const id = requestAnimationFrame(step);
+        hudLoops.gaugeRaf.push(id);
+      }
+    }
+    const id = requestAnimationFrame(step);
+    hudLoops.gaugeRaf.push(id);
+  });
+}
+
+function drawRadial(cv, value){
   const DPR = Math.min(devicePixelRatio || 1, 2);
-  const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent') || '#d71e2b';
+  const accent = hudAccent();
   const grid = 'rgba(255,255,255,.12)';
   const ink  = 'rgba(233,237,245,.92)';
+  const w = cv.clientWidth || 0;
+  const h = cv.clientHeight || 0;
+  if(w < 36 || h < 36) return;
+  cv.width = w * DPR; cv.height = h * DPR;
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  const cx = w/2, cy = h/2 + 4, r = Math.max(8, Math.min(w,h)/2 - 10);
 
-  // Radial gauges
-  document.querySelectorAll('canvas[data-radial]').forEach(cv=>{
-    const value = Math.max(0, Math.min(1, parseFloat(cv.dataset.value || '0')));
-    const w = (cv.clientWidth || 140), h = (cv.clientHeight || 86);
-    cv.width = w * DPR; cv.height = h * DPR;
-    const ctx = cv.getContext('2d'); ctx.scale(DPR, DPR);
-    const cx = w/2, cy = h/2 + 4, r = Math.min(w,h)/2 - 10;
+  ctx.strokeStyle = grid; ctx.lineWidth = 6;
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
 
-    // background ring
-    ctx.strokeStyle = grid; ctx.lineWidth = 6;
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke();
+  ctx.strokeStyle = accent; ctx.lineCap='round'; ctx.lineWidth = 6;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, -Math.PI/2, -Math.PI/2 + Math.PI*2*value, false);
+  ctx.stroke();
 
-    // arc
-    ctx.strokeStyle = accent; ctx.lineCap='round';
-    ctx.beginPath();
-    ctx.arc(cx, cy, r, -Math.PI/2, -Math.PI/2 + Math.PI*2*value, false);
-    ctx.stroke();
+  ctx.fillStyle = ink; ctx.font = 'bold 14px ui-sans-serif, system-ui';
+  const label = Math.round(value*100)+'%';
+  const tw = ctx.measureText(label).width;
+  ctx.fillText(label, cx - tw/2, cy + 5);
+}
 
-    // value text
-    ctx.fillStyle = ink; ctx.font = 'bold 14px ui-sans-serif, system-ui';
-    const label = Math.round(value*100)+'%';
-    const tw = ctx.measureText(label).width;
-    ctx.fillText(label, cx - tw/2, cy + 5);
-  });
+function drawSparkFrame(cv, pts, dashProgress = 1){
+  const DPR = Math.min(devicePixelRatio || 1, 2);
+  const accent = hudAccent();
+  const grid = 'rgba(255,255,255,.12)';
+  const w = cv.clientWidth || 0;
+  const h = cv.clientHeight || 0;
+  if(w < 36 || h < 24) return;
+  cv.width = w * DPR; cv.height = h * DPR;
+  const ctx = cv.getContext('2d');
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  if(!pts.length) return;
 
-  // Sparklines
-  document.querySelectorAll('canvas[data-spark]').forEach(cv=>{
-    const pts = (cv.dataset.points || '1,2,3').split(',').map(x=>parseFloat(x));
-    const w = (cv.clientWidth || 160), h = (cv.clientHeight || 48);
-    cv.width = w * DPR; cv.height = h * DPR;
-    const ctx = cv.getContext('2d'); ctx.scale(DPR, DPR);
+  const min = Math.min(...pts), max = Math.max(...pts);
+  const nx = i => pts.length === 1 ? w/2 : (i/(pts.length-1)) * (w-10) + 5;
+  const ny = v => h - ((v - min) / Math.max(1e-6, (max-min))) * (h-10) - 5;
 
-    const min = Math.min(...pts), max = Math.max(...pts);
-    const nx = i => (i/(pts.length-1)) * (w-10) + 5;
-    const ny = v => h - ((v - min) / Math.max(1e-6, (max-min))) * (h-10) - 5;
+  ctx.strokeStyle = grid; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, h-1.5); ctx.lineTo(w, h-1.5); ctx.stroke();
 
-    // grid line
-    ctx.strokeStyle = grid; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(0, h-1.5); ctx.lineTo(w, h-1.5); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(nx(0), ny(pts[0]));
+  let pathLen = 0;
+  let px = nx(0), py = ny(pts[0]);
+  for(let i=1;i<pts.length;i++){
+    const x = nx(i), y = ny(pts[i]);
+    pathLen += Math.hypot(x - px, y - py);
+    ctx.lineTo(x, y);
+    px = x; py = y;
+  }
+  ctx.strokeStyle = accent; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  const len = Math.max(1, pathLen);
+  ctx.setLineDash([len, len]);
+  ctx.lineDashOffset = len * (1 - dashProgress);
+  ctx.stroke();
+  ctx.setLineDash([]);
 
-    // path
-    ctx.strokeStyle = accent; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(nx(0), ny(pts[0]));
-    for(let i=1;i<pts.length;i++) ctx.lineTo(nx(i), ny(pts[i]));
-    ctx.stroke();
-
-    // last point glow
+  if(dashProgress >= 0.98){
     const lx = nx(pts.length-1), ly = ny(pts[pts.length-1]);
     ctx.fillStyle = accent; ctx.beginPath(); ctx.arc(lx, ly, 3, 0, Math.PI*2); ctx.fill();
-  });
-})();
+  }
+}
 
-// —— HUD feed rotator (cycles bullet text) ——
+function parseSparkPoints(cv){
+  return (cv.dataset.points || '1,2,3').split(',').map(x=>parseFloat(x)).filter(n => !Number.isNaN(n));
+}
+
+function startSparkLive(cv){
+  const key = cv.dataset.spark || cv;
+  let pts = hudLoops.sparkPoints.get(key);
+  if(!pts){ pts = parseSparkPoints(cv).slice(); hudLoops.sparkPoints.set(key, pts); }
+  const timer = setInterval(() => {
+    if(!document.querySelector('#panel-home')?.classList.contains('active')) return;
+    const last = pts[pts.length-1] ?? 8;
+    const next = Math.max(1, last + (Math.random() - 0.42) * 2.4);
+    pts.push(Math.round(next * 10) / 10);
+    if(pts.length > 16) pts.shift();
+    drawSparkFrame(cv, pts, 1);
+  }, 1200);
+  hudLoops.sparkTimers.push(timer);
+}
+
+// ===== HUD mini-graphs (radial + sparkline) =====
+function drawHudCanvases(opts = {}){
+  const animate = opts.animate !== false && !hudReduce();
+  const homeOn = document.querySelector('#panel-home')?.classList.contains('active');
+
+  hudLoops.radialRaf.forEach(id => cancelAnimationFrame(id));
+  hudLoops.radialRaf = [];
+
+  document.querySelectorAll('canvas[data-radial]').forEach((cv, idx) => {
+    const value = Math.max(0, Math.min(1, parseFloat(cv.dataset.value || '0')));
+    if(!animate || !homeOn){
+      drawRadial(cv, value);
+      return;
+    }
+    const delay = idx * 40;
+    const dur = 520;
+    const t0 = performance.now();
+    function step(now){
+      const p = Math.min(1, Math.max(0, (now - t0 - delay) / dur));
+      drawRadial(cv, value * easeOutCubic(p));
+      if(p < 1){
+        const id = requestAnimationFrame(step);
+        hudLoops.radialRaf.push(id);
+      }
+    }
+    const id = requestAnimationFrame(step);
+    hudLoops.radialRaf.push(id);
+  });
+
+  document.querySelectorAll('canvas[data-spark]').forEach(cv => {
+    const key = cv.dataset.spark || cv;
+    if(!hudLoops.sparkPoints.has(key) || opts.reset){
+      hudLoops.sparkPoints.set(key, parseSparkPoints(cv).slice());
+    }
+    const pts = hudLoops.sparkPoints.get(key);
+    if(!animate || !homeOn){
+      drawSparkFrame(cv, pts, 1);
+      return;
+    }
+    const t0 = performance.now();
+    const dur = 520;
+    function step(now){
+      const p = Math.min(1, (now - t0) / dur);
+      drawSparkFrame(cv, pts, easeOutCubic(p));
+      if(p < 1){
+        const id = requestAnimationFrame(step);
+        hudLoops.radialRaf.push(id);
+      } else if(!hudReduce()){
+        startSparkLive(cv);
+      }
+    }
+    const id = requestAnimationFrame(step);
+    hudLoops.radialRaf.push(id);
+  });
+}
+
+function startLogoIdle(){
+  if(hudLoops.logoTimer){ clearInterval(hudLoops.logoTimer); hudLoops.logoTimer = null; }
+  const cells = Array.from(document.querySelectorAll('.logo-cell'));
+  if(!cells.length || hudReduce()) return;
+  const inventory = document.querySelector('.logo-inventory');
+  let i = 0;
+  if(inventory && !inventory.dataset.idleBound){
+    inventory.dataset.idleBound = '1';
+    inventory.addEventListener('mouseenter', () => { hudInventoryHover = true; });
+    inventory.addEventListener('mouseleave', () => { hudInventoryHover = false; });
+    inventory.addEventListener('focusin', () => { hudInventoryHover = true; });
+    inventory.addEventListener('focusout', (e) => {
+      if(!inventory.contains(e.relatedTarget)) hudInventoryHover = false;
+    });
+  }
+  hudLoops.logoTimer = setInterval(() => {
+    if(!document.querySelector('#panel-home')?.classList.contains('active')) return;
+    if(hudInventoryHover || inventory?.matches(':hover')) return;
+    cells.forEach(c => c.classList.remove('is-hot'));
+    cells[i % cells.length].classList.add('is-hot');
+    i = (i + 1) % cells.length;
+  }, 700);
+}
+
+function bootHomeHud(){
+  stopHudLoops();
+  replayCssIntros();
+  animateGauges();
+  drawHudCanvases({ animate: true, reset: true });
+  startLogoIdle();
+}
+
+window.addEventListener('resize', () => drawHudCanvases({ animate: false }));
+
+// —— HUD feed rotator (fade/slide instead of hard swap) ——
 (function(){
-  const SPEED = 2200; // ms per item
+  const SPEED = 2200;
   const feeds = [...document.querySelectorAll('.feed')];
   feeds.forEach(ul=>{
     const items = (ul.dataset.rotate || '').split(',').map(s=>s.trim()).filter(Boolean);
@@ -280,13 +396,94 @@ setInterval(cyclePanels, 4000); // rotate every 4s
     let i = 0;
     const li = document.createElement('li');
     ul.appendChild(li);
-    function tick(){
+    function apply(){
       li.textContent = items[i];
       i = (i+1) % items.length;
+      li.classList.remove('is-out');
+      li.classList.add('is-in');
     }
-    tick();
+    function tick(){
+      if(hudReduce()){
+        if(!li.textContent) apply();
+        return;
+      }
+      li.classList.remove('is-in');
+      li.classList.add('is-out');
+      setTimeout(apply, 240);
+    }
+    apply();
+    if(hudReduce()) return;
     let timer = setInterval(tick, SPEED);
     ul.addEventListener('mouseenter', ()=> clearInterval(timer));
-    ul.addEventListener('mouseleave', ()=> timer = setInterval(tick, SPEED));
+    ul.addEventListener('mouseleave', ()=> { clearInterval(timer); timer = setInterval(tick, SPEED); });
+  });
+})();
+
+// —— HUD pointer tooltip ——
+(function(){
+  const tip = document.getElementById('hud-tip');
+  if(!tip) return;
+  if(tip.parentElement !== document.body) document.body.appendChild(tip);
+  const sel = '.gauge-cell, .logo-cell, .protocol-list li, .radial, .spark';
+  const hot = new Set();
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function contentFor(el){
+    const name = el.dataset.name || el.querySelector('.graph-label')?.textContent?.trim() || el.querySelector('.proto')?.textContent?.trim() || '';
+    const cat = el.dataset.cat || '';
+    const detail = el.dataset.detail || '';
+    if(!name && !detail) return '';
+    let html = '';
+    if(name) html += `<span class="tip-name">${esc(name)}</span>`;
+    if(cat) html += `<span class="tip-cat">${esc(cat)}</span>`;
+    if(detail) html += `<span class="tip-detail">${esc(detail)}</span>`;
+    return html;
+  }
+
+  function place(e){
+    const x = (e.clientX ?? 0);
+    const y = (e.clientY ?? 0);
+    const pad = 14;
+    tip.style.left = '0px';
+    tip.style.top = '0px';
+    const tw = tip.offsetWidth || 160;
+    const th = tip.offsetHeight || 48;
+    let left = x + pad;
+    let top = y + pad;
+    if(left + tw > innerWidth - 8) left = x - tw - pad;
+    if(top + th > innerHeight - 8) top = y - th - pad;
+    if(left < 8) left = 8;
+    if(top < 8) top = 8;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+
+  function show(el, e){
+    const html = contentFor(el);
+    if(!html) return;
+    tip.innerHTML = html;
+    tip.hidden = false;
+    place(e);
+    el.classList.add('is-hot');
+    hot.add(el);
+  }
+
+  function hide(el){
+    if(el){ el.classList.remove('is-hot'); hot.delete(el); }
+    if(!hot.size) tip.hidden = true;
+  }
+
+  document.querySelectorAll(sel).forEach(el => {
+    el.addEventListener('mouseenter', (e) => show(el, e));
+    el.addEventListener('mousemove', (e) => { if(!tip.hidden) place(e); });
+    el.addEventListener('mouseleave', () => hide(el));
+    el.addEventListener('focus', () => {
+      const r = el.getBoundingClientRect();
+      show(el, { clientX: r.left + r.width/2, clientY: r.bottom });
+    });
+    el.addEventListener('blur', () => hide(el));
   });
 })();
