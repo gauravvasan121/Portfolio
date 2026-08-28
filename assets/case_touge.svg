@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="TOUGE CLIENT">
+  <rect width="800" height="420" fill="#06080c"/>
+  <rect x="10" y="10" width="780" height="400" fill="none" stroke="rgba(215,30,43,0.28)" stroke-width="1"/>
+  <!-- L-brackets -->
+  <path d="M18 18h36M18 18v36" stroke="#d71e2b" stroke-width="2.2" fill="none" stroke-linecap="square"/>
+  <path d="M782 18h-36M782 18v36" stroke="#d71e2b" stroke-width="2.2" fill="none" stroke-linecap="square"/>
+  <path d="M18 402h36M18 402v-36" stroke="#d71e2b" stroke-width="2.2" fill="none" stroke-linecap="square"/>
+  <path d="M782 402h-36M782 402v-36" stroke="#d71e2b" stroke-width="2.2" fill="none" stroke-linecap="square"/>
+  <!-- header tape -->
+  <rect x="64" y="22" width="672" height="28" fill="#0a0e16" stroke="rgba(215,30,43,0.35)"/>
+  <text x="76" y="41" fill="#d71e2b" font-family="ui-monospace, Share Tech Mono, monospace" font-size="13" font-weight="700" letter-spacing="2.4">CASE 05  ·  CLIENT</text>
+  <text x="724" y="41" fill="#8c92a4" font-family="ui-monospace, Share Tech Mono, monospace" font-size="11" text-anchor="end" letter-spacing="1.6">TOUGE CLIENT</text>
+  <!-- faint grid -->
+  <g stroke="rgba(233,237,245,0.05)" stroke-width="1">
+    <line x1="40" y1="70" x2="760" y2="70"/><line x1="40" y1="92" x2="760" y2="92"/><line x1="40" y1="114" x2="760" y2="114"/><line x1="40" y1="136" x2="760" y2="136"/><line x1="40" y1="158" x2="760" y2="158"/><line x1="40" y1="180" x2="760" y2="180"/><line x1="40" y1="202" x2="760" y2="202"/><line x1="40" y1="224" x2="760" y2="224"/><line x1="40" y1="246" x2="760" y2="246"/><line x1="40" y1="268" x2="760" y2="268"/><line x1="40" y1="290" x2="760" y2="290"/><line x1="40" y1="312" x2="760" y2="312"/><line x1="40" y1="334" x2="760" y2="334"/><line x1="40" y1="356" x2="760" y2="356"/><line x1="40" y1="378" x2="760" y2="378"/>
+    <line x1="48" y1="64" x2="48" y2="388"/><line x1="76" y1="64" x2="76" y2="388"/><line x1="104" y1="64" x2="104" y2="388"/><line x1="132" y1="64" x2="132" y2="388"/><line x1="160" y1="64" x2="160" y2="388"/><line x1="188" y1="64" x2="188" y2="388"/><line x1="216" y1="64" x2="216" y2="388"/><line x1="244" y1="64" x2="244" y2="388"/><line x1="272" y1="64" x2="272" y2="388"/><line x1="300" y1="64" x2="300" y2="388"/><line x1="328" y1="64" x2="328" y2="388"/><line x1="356" y1="64" x2="356" y2="388"/><line x1="384" y1="64" x2="384" y2="388"/><line x1="412" y1="64" x2="412" y2="388"/><line x1="440" y1="64" x2="440" y2="388"/><line x1="468" y1="64" x2="468" y2="388"/><line x1="496" y1="64" x2="496" y2="388"/><line x1="524" y1="64" x2="524" y2="388"/><line x1="552" y1="64" x2="552" y2="388"/><line x1="580" y1="64" x2="580" y2="388"/><line x1="608" y1="64" x2="608" y2="388"/><line x1="636" y1="64" x2="636" y2="388"/><line x1="664" y1="64" x2="664" y2="388"/><line x1="692" y1="64" x2="692" y2="388"/><line x1="720" y1="64" x2="720" y2="388"/><line x1="748" y1="64" x2="748" y2="388"/>
+  </g>
+  
+  <!-- widget tree — NOT a racing scene -->
+  <g font-family="ui-monospace, monospace">
+    <text x="70" y="90" fill="#8c92a4" font-size="10" letter-spacing="2">WIDGET TREE</text>
+    <!-- root -->
+    <rect x="70" y="104" width="220" height="36" fill="#0a0e16" stroke="#d71e2b"/>
+    <text x="84" y="126" fill="#e9edf5" font-size="12">MaterialApp</text>
+    <!-- children -->
+    <line x1="180" y1="140" x2="180" y2="158" stroke="#d71e2b"/>
+    <rect x="90" y="158" width="260" height="36" fill="#0a0e16" stroke="rgba(215,30,43,0.7)"/>
+    <text x="104" y="180" fill="#e9edf5" font-size="12">Scaffold</text>
+    <line x1="180" y1="194" x2="180" y2="212" stroke="#d71e2b"/>
+    <line x1="180" y1="212" x2="140" y2="212" stroke="#d71e2b"/>
+    <line x1="180" y1="212" x2="320" y2="212" stroke="#d71e2b"/>
+    <line x1="140" y1="212" x2="140" y2="226" stroke="#d71e2b"/>
+    <line x1="320" y1="212" x2="320" y2="226" stroke="#d71e2b"/>
+    <rect x="70" y="226" width="150" height="32" fill="#0a0e16" stroke="rgba(233,237,245,0.35)"/>
+    <text x="84" y="246" fill="#e9edf5" font-size="11">AppBar</text>
+    <rect x="250" y="226" width="170" height="32" fill="#0a0e16" stroke="rgba(233,237,245,0.35)"/>
+    <text x="264" y="246" fill="#e9edf5" font-size="11">Column</text>
+    <line x1="320" y1="258" x2="320" y2="274" stroke="#d71e2b"/>
+    <line x1="260" y1="274" x2="400" y2="274" stroke="#d71e2b"/>
+    <line x1="260" y1="274" x2="260" y2="286" stroke="#d71e2b"/>
+    <line x1="400" y1="274" x2="400" y2="286" stroke="#d71e2b"/>
+    <rect x="200" y="286" width="120" height="28" fill="#0a0e16" stroke="#d71e2b"/>
+    <text x="214" y="304" fill="#e9edf5" font-size="11">Text</text>
+    <rect x="340" y="286" width="120" height="28" fill="#0a0e16" stroke="#d71e2b"/>
+    <text x="354" y="304" fill="#e9edf5" font-size="11">Button</text>
+  </g>
+  <!-- dart isolate / private -->
+  <g transform="translate(500,96)" font-family="ui-monospace, monospace">
+    <rect width="230" height="230" fill="#0a0e16" stroke="rgba(215,30,43,0.4)"/>
+    <text x="14" y="24" fill="#d71e2b" font-size="10" letter-spacing="2">DART CLIENT</text>
+    <text x="14" y="52" fill="#e9edf5" font-size="12">isolate main()</text>
+    <text x="14" y="74" fill="#8c92a4" font-size="11">flutter run  ·  debug</text>
+    <rect x="14" y="96" width="200" height="48" fill="#06080c" stroke="rgba(215,30,43,0.5)"/>
+    <text x="24" y="118" fill="#e9edf5" font-size="11">repo  gauravvasan121</text>
+    <text x="24" y="136" fill="#8c92a4" font-size="11">/Touge   PRIVATE</text>
+    <text x="14" y="172" fill="#8c92a4" font-size="10">README  ·  default stub</text>
+    <text x="14" y="194" fill="#8c92a4" font-size="10">STATUS  LOCKED</text>
+    <rect x="14" y="208" width="70" height="8" fill="#d71e2b"/>
+    <rect x="90" y="208" width="40" height="8" fill="rgba(233,237,245,0.25)"/>
+  </g>
+
+  <!-- footer -->
+  <rect x="40" y="384" width="720" height="14" fill="#0a0e16" stroke="rgba(215,30,43,0.25)"/>
+  <rect x="40" y="384" width="90" height="14" fill="#d71e2b"/>
+  <text x="85" y="394" fill="#e9edf5" font-family="ui-monospace, monospace" font-size="9" text-anchor="middle" font-weight="700">LIVE FEED</text>
+</svg>

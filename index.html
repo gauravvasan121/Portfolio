@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=hud9" />
+  <link rel="stylesheet" href="styles.css?v=hud10" />
 </head>
 <body>
   <div id="fx">
@@ -159,62 +159,166 @@
 
       <!-- PROJECTS -->
       <section id="panel-projects" class="panel" role="region" aria-labelledby="projects-tab">
-        <div class="panel-head">
-          <h1 id="projects-tab">Cases</h1>
-          <p class="lede">A dossier of shipped builds and prototypes.</p>
-        </div>
-        <div class="grid projects">
-          <article class="project" data-rarity="rare" data-tags="backend data"><div class="card-inner">
-            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_github_clean.png" alt="GitHub Data Viz"></div>
-            <div class="meta">
-              <span class="tag">Flask • React • GitHub API</span>
-              <h3>GitHub Data Visualization App</h3>
-              <p>Stars/forks/commits graphed with Matplotlib; JSON to a reactive UI.</p>
-              <div class="actions"><a class="btn ghost" aria-disabled="true">Repo (private)</a></div>
-              <div class="tech-icons">
-                <img src="assets/tech_python.svg" alt="python"/><img src="assets/tech_flask.svg" alt="flask"/><img src="assets/tech_react.svg" alt="react"/><img src="assets/tech_github.svg" alt="github"/>
-              </div>
+        <div class="dossier-stage">
+          <header class="dossier-head">
+            <div class="dossier-titleblock">
+              <h1 id="projects-tab">Cases</h1>
+              <p class="lede">Five dossiers. Hover or focus a module for stack, function, and status.</p>
             </div>
-          </div></article>
+            <div class="dossier-filters" role="group" aria-label="Filter cases">
+              <button type="button" class="dossier-chip is-on" data-filter="all" aria-pressed="true">ALL</button>
+              <button type="button" class="dossier-chip" data-filter="backend" aria-pressed="false">BACKEND</button>
+              <button type="button" class="dossier-chip" data-filter="realtime" aria-pressed="false">REALTIME</button>
+              <button type="button" class="dossier-chip" data-filter="game" aria-pressed="false">GAME</button>
+              <button type="button" class="dossier-chip" data-filter="client" aria-pressed="false">CLIENT</button>
+            </div>
+          </header>
 
-          <article class="project" data-rarity="legendary" data-tags="serverless backend"><div class="card-inner">
-            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_secure_clean.png" alt="Secure Messaging"></div>
-            <div class="meta">
-              <span class="tag">AWS • Serverless • Security</span>
-              <h3>Secure Scheduled Messaging</h3>
-              <p>Lambda APIs, DynamoDB, PayPal + credits, JWT auth, fail-safe delivery workflows.</p>
-              <div class="actions"><a class="btn ghost" aria-disabled="true">Case Study (coming)</a></div>
-              <div class="tech-icons">
-                <img src="assets/tech_aws.svg" alt="aws"/><img src="assets/tech_lambda.svg" alt="lambda"/><img src="assets/tech_dynamodb.svg" alt="dynamodb"/><img src="assets/tech_s3.svg" alt="s3"/><img src="assets/tech_security.svg" alt="security"/>
+          <div class="dossier-grid" role="list">
+            <article class="dossier" role="listitem" tabindex="0" data-lane="backend" data-case="github">
+              <div class="dossier-still">
+                <img src="assets/case_github.svg" alt="HUD schematic of stars, forks, and commits graphed from GitHub API JSON">
+                <div class="dossier-readout">
+                  <div><span class="k">STACK</span> Flask · React · GitHub API · Matplotlib</div>
+                  <div><span class="k">FUNCTION</span> Stars, forks, commits graphed; JSON to a reactive UI</div>
+                  <div><span class="k">STATUS</span> Private repository</div>
+                </div>
               </div>
-            </div>
-          </div></article>
+              <div class="dossier-body">
+                <div class="dossier-tags">
+                  <span>Flask</span>
+                  <span>React</span>
+                  <span>GitHub API</span>
+                </div>
+                <h3>GitHub Data Visualization App</h3>
+                <p class="dossier-lede">Stars/forks/commits graphed; JSON to a reactive UI.</p>
+                <div class="dossier-logos">
+                  <img src="assets/tech_python.svg" alt="Python">
+                  <img src="assets/tech_flask.svg" alt="Flask">
+                  <img src="assets/tech_react.svg" alt="React">
+                  <img src="assets/tech_github.svg" alt="GitHub">
+                </div>
+                <div class="dossier-cta">
+                  <button class="btn ghost" type="button" disabled aria-disabled="true">Repo (private)</button>
+                </div>
+              </div>
+            </article>
 
-          <article class="project" data-rarity="rare" data-tags="realtime serverless"><div class="card-inner">
-            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_tracking_clean.png" alt="Tracking & Gamification"></div>
-            <div class="meta">
-              <span class="tag">AWS • Realtime • Mobile</span>
-              <h3>Tracking &amp; Gamification</h3>
-              <p>Live routes, leaderboards, S3 snapshots, SNS/FCM, cold-start tuning.</p>
-              <div class="actions"><a class="btn ghost" aria-disabled="true">Demo by request</a></div>
-              <div class="tech-icons">
-                <img src="assets/tech_aws.svg" alt="aws"/><img src="assets/tech_realtime.svg" alt="realtime"/><img src="assets/tech_sns.svg" alt="sns"/><img src="assets/tech_fcm.svg" alt="fcm"/>
+            <article class="dossier" role="listitem" tabindex="0" data-lane="backend" data-case="secure">
+              <div class="dossier-still">
+                <img src="assets/case_secure.svg" alt="HUD schematic of lock, Lambda scheduler, DynamoDB, S3, and JWT auth">
+                <div class="dossier-readout">
+                  <div><span class="k">STACK</span> AWS Lambda · DynamoDB · S3 · PayPal · JWT</div>
+                  <div><span class="k">FUNCTION</span> Scheduled delivery with fail-safe retry and credits</div>
+                  <div><span class="k">STATUS</span> Case study coming</div>
+                </div>
               </div>
-            </div>
-          </div></article>
+              <div class="dossier-body">
+                <div class="dossier-tags">
+                  <span>AWS</span>
+                  <span>Lambda</span>
+                  <span>Security</span>
+                </div>
+                <h3>Secure Scheduled Messaging</h3>
+                <p class="dossier-lede">Lambda APIs, DynamoDB, S3, PayPal credits, JWT auth, fail-safe delivery.</p>
+                <div class="dossier-logos">
+                  <img src="assets/tech_aws.svg" alt="AWS">
+                  <img src="assets/tech_lambda.svg" alt="Lambda">
+                  <img src="assets/tech_dynamodb.svg" alt="DynamoDB">
+                  <img src="assets/tech_s3.svg" alt="S3">
+                  <img src="assets/tech_jwt.svg" alt="JWT">
+                  <img src="assets/tech_security.svg" alt="Security">
+                </div>
+                <div class="dossier-cta">
+                  <button class="btn ghost" type="button" disabled aria-disabled="true">Case study coming</button>
+                </div>
+              </div>
+            </article>
 
-          <article class="project" data-rarity="legendary" data-tags="game"><div class="card-inner">
-            <div class="thumb-wrap"><img class="thumb" src="assets/thumb_ue5_clean.png" alt="UE5 Prototype"></div>
-            <div class="meta">
-              <span class="tag">UE5 • Niagara</span>
-              <h3>Flash Mechanics Prototype</h3>
-              <p>High-speed locomotion, lightning ribbons, exposure-safe VFX, gameplay tags.</p>
-              <div class="actions"><a class="btn ghost" aria-disabled="true">Devlog</a></div>
-              <div class="tech-icons">
-                <img src="assets/tech_ue5.svg" alt="ue5"/><img src="assets/tech_niagara.svg" alt="niagara"/>
+            <article class="dossier" role="listitem" tabindex="0" data-lane="realtime" data-case="tracking">
+              <div class="dossier-still">
+                <img src="assets/case_tracking.svg" alt="HUD schematic of a live route map and leaderboard">
+                <div class="dossier-readout">
+                  <div><span class="k">STACK</span> AWS realtime · S3 · SNS · FCM</div>
+                  <div><span class="k">FUNCTION</span> Live routes, leaderboards, snapshots, push, cold-start tuning</div>
+                  <div><span class="k">STATUS</span> Demo by request</div>
+                </div>
               </div>
-            </div>
-          </div></article>
+              <div class="dossier-body">
+                <div class="dossier-tags">
+                  <span>AWS</span>
+                  <span>Realtime</span>
+                  <span>Mobile</span>
+                </div>
+                <h3>Tracking &amp; Gamification</h3>
+                <p class="dossier-lede">Live routes, leaderboards, S3 snapshots, SNS/FCM, cold-start tuning.</p>
+                <div class="dossier-logos">
+                  <img src="assets/tech_aws.svg" alt="AWS">
+                  <img src="assets/tech_realtime.svg" alt="Realtime">
+                  <img src="assets/tech_sns.svg" alt="SNS">
+                  <img src="assets/tech_fcm.svg" alt="FCM">
+                  <img src="assets/tech_s3.svg" alt="S3">
+                </div>
+                <div class="dossier-cta">
+                  <button class="btn ghost" type="button" disabled aria-disabled="true">Demo by request</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="dossier" role="listitem" tabindex="0" data-lane="game" data-case="ue5">
+              <div class="dossier-still">
+                <img src="assets/case_ue5.svg" alt="HUD schematic of Niagara lightning ribbons and gameplay tags">
+                <div class="dossier-readout">
+                  <div><span class="k">STACK</span> Unreal Engine 5 · Niagara</div>
+                  <div><span class="k">FUNCTION</span> High-speed locomotion, lightning ribbons, exposure-safe VFX</div>
+                  <div><span class="k">STATUS</span> Prototype · devlog not published</div>
+                </div>
+              </div>
+              <div class="dossier-body">
+                <div class="dossier-tags">
+                  <span>UE5</span>
+                  <span>Niagara</span>
+                </div>
+                <h3>Flash Mechanics Prototype</h3>
+                <p class="dossier-lede">High-speed locomotion, lightning ribbons, exposure-safe VFX, gameplay tags.</p>
+                <div class="dossier-logos">
+                  <img src="assets/tech_ue5.svg" alt="UE5">
+                  <img src="assets/tech_niagara.svg" alt="Niagara">
+                </div>
+                <div class="dossier-cta">
+                  <button class="btn ghost" type="button" disabled aria-disabled="true">Devlog</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="dossier" role="listitem" tabindex="0" data-lane="client" data-case="touge">
+              <div class="dossier-still">
+                <img src="assets/case_touge.svg" alt="HUD schematic of a Flutter widget tree and private Dart client">
+                <div class="dossier-readout">
+                  <div><span class="k">STACK</span> Flutter · Dart</div>
+                  <div><span class="k">FUNCTION</span> Flutter/Dart client</div>
+                  <div><span class="k">STATUS</span> Private repo gauravvasan121/Touge</div>
+                </div>
+              </div>
+              <div class="dossier-body">
+                <div class="dossier-tags">
+                  <span>Flutter</span>
+                  <span>Dart</span>
+                  <span>Client</span>
+                </div>
+                <h3>Touge</h3>
+                <p class="dossier-lede">Flutter/Dart client. Status: private repo.</p>
+                <div class="dossier-logos">
+                  <img src="assets/tech_dart.svg" alt="Dart">
+                  <img src="assets/tech_flutter.svg" alt="Flutter">
+                </div>
+                <div class="dossier-cta">
+                  <button class="btn ghost" type="button" disabled aria-disabled="true">Repo (private)</button>
+                  <button class="btn ghost" type="button" disabled aria-disabled="true">Demo by request</button>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -572,6 +676,6 @@
   <audio id="sfx-confirm" preload="auto" src="assets/confirm.wav"></audio>
   <audio id="sfx-back" preload="auto" src="assets/back.wav"></audio>
 
-  <script src="script.js?v=hud9"></script>
+  <script src="script.js?v=hud10"></script>
 </body>
 </html>

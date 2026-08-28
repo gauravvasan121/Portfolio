@@ -487,3 +487,34 @@ window.addEventListener('resize', () => drawHudCanvases({ animate: false }));
     el.addEventListener('blur', () => hide(el));
   });
 })();
+
+
+// —— Projects dossier filter (scoped; does not touch Home HUD) ——
+(function(){
+  const root = document.getElementById('panel-projects');
+  if(!root) return;
+  const chips = Array.from(root.querySelectorAll('.dossier-chip'));
+  const cards = Array.from(root.querySelectorAll('.dossier'));
+  if(!chips.length || !cards.length) return;
+
+  function apply(filter){
+    chips.forEach(c => {
+      const on = c.dataset.filter === filter;
+      c.classList.toggle('is-on', on);
+      c.setAttribute('aria-pressed', String(on));
+    });
+    cards.forEach(card => {
+      const lane = card.dataset.lane || '';
+      const show = filter === 'all' || lane === filter;
+      card.classList.toggle('is-off', !show);
+    });
+    root.classList.toggle('is-filtered', filter !== 'all');
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      apply(chip.dataset.filter || 'all');
+    });
+  });
+})();
