@@ -1245,7 +1245,8 @@ body{
 
 /* =========================================================
    SKILLS HUD — scoped to #panel-skills
-   Accent #d71e2b · 8px grid · 200–600ms ease-out
+   Accent #d71e2b · bg #06080c · 8px grid · 200–600ms ease-out
+   Briefing rows: logo + name + use-line always visible
    ========================================================= */
 #panel-skills.panel.active{
   display: grid !important;
@@ -1291,8 +1292,8 @@ body{
 }
 #panel-skills .skill-hud{
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
-  grid-template-rows: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, .9fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
+  grid-template-rows: minmax(0, 1.05fr) minmax(0, 1fr) auto;
   gap: 8px;
   height: 100%;
   min-height: 0;
@@ -1302,9 +1303,15 @@ body{
 #panel-skills .skill-hud-mod.lang{ grid-column: 1; grid-row: 1; }
 #panel-skills .skill-hud-mod.fw{ grid-column: 2; grid-row: 1; }
 #panel-skills .skill-hud-mod.cloud{ grid-column: 1 / -1; grid-row: 2; }
-#panel-skills .skill-hud-mod.sec{ grid-column: 1; grid-row: 3; }
-#panel-skills .skill-hud-mod.game{ grid-column: 2; grid-row: 3; }
-
+#panel-skills .skill-hud-bottom{
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
 #panel-skills .skill-hud-mod{
   position: relative;
   min-width: 0;
@@ -1312,7 +1319,7 @@ body{
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px;
+  padding: 10px;
   overflow: visible;
   color: var(--fg);
   border: 1px solid var(--hud-border);
@@ -1343,10 +1350,11 @@ body{
 #panel-skills .skill-hud-mod.fw{ animation-delay: .08s }
 #panel-skills .skill-hud-mod.cloud{ animation-delay: .12s }
 #panel-skills .skill-hud-mod.sec{ animation-delay: .16s }
-#panel-skills .skill-hud-mod.game{ animation-delay: .2s }
+#panel-skills .skill-hud-mod.pay{ animation-delay: .2s }
+#panel-skills .skill-hud-mod.game{ animation-delay: .24s }
 @keyframes skill-hud-in{
-  from { opacity: 0; transform: translateY(8px) }
-  to { opacity: 1; transform: none }
+  from { transform: translateY(8px) }
+  to { transform: none }
 }
 #panel-skills .skill-hud-mod h2{
   margin: 0;
@@ -1359,44 +1367,67 @@ body{
   overflow: visible;
   white-space: nowrap;
   min-width: 0;
+  flex: 0 0 auto;
 }
-#panel-skills .skill-hud-grid{
+#panel-skills .skill-hud-list{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(56px, 80px));
-  gap: 8px;
+  gap: 6px;
   flex: 1;
   min-height: 0;
   min-width: 0;
-  align-content: center;
-  justify-content: start;
+  align-content: stretch;
+  justify-content: stretch;
 }
-#panel-skills .skill-hud-mod.lang .skill-hud-grid{ grid-template-columns: repeat(6, minmax(0, 80px)); }
-#panel-skills .skill-hud-mod.fw .skill-hud-grid{ grid-template-columns: repeat(5, minmax(0, 80px)); }
-#panel-skills .skill-hud-mod.cloud .skill-hud-grid{ grid-template-columns: repeat(11, minmax(0, 80px)); }
-#panel-skills .skill-hud-mod.sec .skill-hud-grid{ grid-template-columns: repeat(3, minmax(0, 80px)); }
-#panel-skills .skill-hud-mod.game .skill-hud-grid{ grid-template-columns: repeat(2, minmax(0, 80px)); }
+#panel-skills .skill-hud-mod.lang .skill-hud-list{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#panel-skills .skill-hud-mod.fw .skill-hud-list{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#panel-skills .skill-hud-mod.cloud .skill-hud-list{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#panel-skills .skill-hud-mod.sec .skill-hud-list,
+#panel-skills .skill-hud-mod.pay .skill-hud-list,
+#panel-skills .skill-hud-mod.game .skill-hud-list{
+  grid-template-columns: minmax(0, 1fr);
+}
 
 #panel-skills .skill-hud-cell{
-  aspect-ratio: 1;
-  max-width: 88px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  min-height: 40px;
+  padding: 6px 8px;
   border: 1px solid rgba(215,30,43,.28);
   background: rgba(255,255,255,.03);
-  display: grid;
-  place-items: center;
-  padding: 4px;
   animation: skill-logo-pop .28s ease-out both;
-  transition: transform .2s ease-out, border-color .2s ease-out, box-shadow .2s ease-out;
+  transition: transform .2s ease-out, border-color .2s ease-out, box-shadow .2s ease-out, background .2s ease-out;
   cursor: help;
   outline: none;
-  min-width: 0;
 }
 #panel-skills .skill-hud-cell img{
-  width: 100%;
-  height: 100%;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   display: block;
   filter: brightness(1.12) contrast(1.08) drop-shadow(0 0 4px rgba(233,237,245,.22));
+}
+#panel-skills .skill-hud-copy{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  overflow: visible;
+}
+#panel-skills .skill-hud-name{
+  font: 700 12px/1.2 Inter, system-ui, sans-serif;
+  color: var(--fg);
+  letter-spacing: .02em;
+  overflow: visible;
+  white-space: normal;
+}
+#panel-skills .skill-hud-use{
+  font: 400 11px/1.3 Inter, system-ui, sans-serif;
+  color: var(--muted);
+  overflow: visible;
+  white-space: normal;
 }
 #panel-skills .skill-hud-cell[data-name="Flask"] img,
 #panel-skills .skill-hud-cell[data-name="Git"] img,
@@ -1409,9 +1440,10 @@ body{
 #panel-skills .skill-hud-cell:hover,
 #panel-skills .skill-hud-cell.is-hot,
 #panel-skills .skill-hud-cell:focus-visible{
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: var(--accent);
   box-shadow: 0 0 14px rgba(215,30,43,.45);
+  background: rgba(215,30,43,.08);
 }
 #panel-skills .skill-hud-cell:nth-child(1){animation-delay:.01s}
 #panel-skills .skill-hud-cell:nth-child(2){animation-delay:.03s}
@@ -1425,25 +1457,43 @@ body{
 #panel-skills .skill-hud-cell:nth-child(10){animation-delay:.19s}
 #panel-skills .skill-hud-cell:nth-child(11){animation-delay:.21s}
 @keyframes skill-logo-pop{
-  from { opacity: 0; transform: scale(.85) }
-  to { opacity: 1; transform: none }
+  from { transform: translateY(6px) }
+  to { transform: none }
 }
 
 @media (min-width: 901px) and (max-width: 1400px){
-  #panel-skills .skill-hud-mod.lang .skill-hud-grid{ grid-template-columns: repeat(6, minmax(0, 64px)); }
-  #panel-skills .skill-hud-mod.fw .skill-hud-grid{ grid-template-columns: repeat(5, minmax(0, 64px)); }
-  #panel-skills .skill-hud-mod.cloud .skill-hud-grid{ grid-template-columns: repeat(11, minmax(0, 56px)); }
-  #panel-skills .skill-hud-mod.sec .skill-hud-grid{ grid-template-columns: repeat(3, minmax(0, 64px)); }
-  #panel-skills .skill-hud-mod.game .skill-hud-grid{ grid-template-columns: repeat(2, minmax(0, 64px)); }
-  #panel-skills .skill-hud-cell{ max-width: 64px; }
   #panel-skills .skill-hud-mod{ padding: 8px; gap: 6px; }
   #panel-skills .skill-hud-mod h2{ font-size: 11px; padding-bottom: 4px; white-space: normal; }
+  #panel-skills .skill-hud-list{ gap: 5px; }
+  #panel-skills .skill-hud-mod.lang .skill-hud-list{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #panel-skills .skill-hud-mod.fw .skill-hud-list{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #panel-skills .skill-hud-mod.cloud .skill-hud-list{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #panel-skills .skill-hud-cell{
+    min-height: 36px;
+    padding: 5px 7px;
+    gap: 7px;
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+  #panel-skills .skill-hud-cell img{ width: 24px; height: 24px; }
+  #panel-skills .skill-hud-name{ font-size: 11px; line-height: 1.2; }
+  #panel-skills .skill-hud-use{ font-size: 10.5px; line-height: 1.3; }
+  #panel-skills .skill-hud-bottom{
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
 }
 
 @media (min-width: 901px) and (max-height: 820px){
+  #panel-skills.panel.active{ overflow: auto; }
   #panel-skills .skill-hud-head .lede{ display: none; }
-  #panel-skills .skill-hud-mod{ padding: 8px; gap: 6px; }
-  #panel-skills .skill-hud-cell{ max-width: 64px; }
+  #panel-skills .skill-hud{
+    grid-template-rows: auto auto auto;
+    height: auto;
+  }
+  #panel-skills .skill-hud-mod{ padding: 8px; gap: 6px; overflow: visible; height: auto; }
+  #panel-skills .skill-hud-mod.cloud .skill-hud-list{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #panel-skills .skill-hud-cell{ min-height: 34px; padding: 4px 6px; }
+  #panel-skills .skill-hud-name{ font-size: 11px; }
+  #panel-skills .skill-hud-use{ font-size: 10px; }
 }
 
 /* =========================================================
@@ -1773,6 +1823,14 @@ body{
     gap: 12px;
     width: 100%;
   }
+  #panel-skills .skill-hud-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    grid-column: auto;
+    grid-row: auto;
+  }
   #panel-skills .skill-hud-mod{
     grid-column: auto !important;
     grid-row: auto !important;
@@ -1783,19 +1841,25 @@ body{
     min-height: 0;
   }
   #panel-skills .skill-hud-mod h2{ white-space: normal; }
-  #panel-skills .skill-hud-grid,
-  #panel-skills .skill-hud-mod.lang .skill-hud-grid,
-  #panel-skills .skill-hud-mod.fw .skill-hud-grid,
-  #panel-skills .skill-hud-mod.cloud .skill-hud-grid,
-  #panel-skills .skill-hud-mod.sec .skill-hud-grid,
-  #panel-skills .skill-hud-mod.game .skill-hud-grid{
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  #panel-skills .skill-hud-list,
+  #panel-skills .skill-hud-mod.lang .skill-hud-list,
+  #panel-skills .skill-hud-mod.fw .skill-hud-list,
+  #panel-skills .skill-hud-mod.cloud .skill-hud-list,
+  #panel-skills .skill-hud-mod.sec .skill-hud-list,
+  #panel-skills .skill-hud-mod.pay .skill-hud-list,
+  #panel-skills .skill-hud-mod.game .skill-hud-list{
+    grid-template-columns: minmax(0, 1fr);
     justify-content: stretch;
   }
   #panel-skills .skill-hud-cell{
     max-width: none;
     width: 100%;
+    min-height: 48px;
+    padding: 8px 10px;
+    grid-template-columns: 28px minmax(0, 1fr);
   }
+  #panel-skills .skill-hud-name{ font-size: 13px; }
+  #panel-skills .skill-hud-use{ font-size: 12px; }
   #panel-skills,
   #panel-experience{
     overflow-x: hidden;
