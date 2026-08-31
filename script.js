@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nums = document.querySelectorAll('.kpi .num');
     nums.forEach(el=>{
       const target = Number(el.dataset.target || '0');
-      const dur = 900; const start = performance.now();
+      const dur = 520; const start = performance.now();
       function step(t){
         const p = Math.min(1, (t - start) / dur);
         el.textContent = Math.floor(target * p);
@@ -354,7 +354,7 @@ function drawHudCanvases(opts = {}){
 
 function startLogoIdle(){
   if(hudLoops.logoTimer){ clearInterval(hudLoops.logoTimer); hudLoops.logoTimer = null; }
-  const cells = Array.from(document.querySelectorAll('.logo-cell'));
+  const cells = Array.from(document.querySelectorAll('#panel-home .logo-cell'));
   if(!cells.length || hudReduce()) return;
   const inventory = document.querySelector('.logo-inventory');
   let i = 0;
@@ -424,7 +424,7 @@ window.addEventListener('resize', () => drawHudCanvases({ animate: false }));
   const tip = document.getElementById('hud-tip');
   if(!tip) return;
   if(tip.parentElement !== document.body) document.body.appendChild(tip);
-  const sel = '.gauge-cell, .logo-cell, .protocol-list li, .radial, .spark';
+  const sel = '.gauge-cell, .logo-cell, .protocol-list li, .radial, .spark, .skill-hud-cell, #panel-experience .kpi';
   const hot = new Set();
 
   function esc(s){
