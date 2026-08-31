@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=hud10" />
+  <link rel="stylesheet" href="styles.css?v=hud12" />
 </head>
 <body>
   <div id="fx">
@@ -324,129 +324,220 @@
 
       <!-- SKILLS -->
       <section id="panel-skills" class="panel" role="region" aria-labelledby="skills-tab">
-        <div class="panel-head">
+        <div class="skill-hud-head">
           <h1 id="skills-tab">Capabilities</h1>
-          <p class="lede">Compact category packs — expand to view all tools &amp; frameworks.</p>
+          <p class="lede">Briefing rows — logo, name, and how it is used. Hover for category.</p>
         </div>
-        <div class="skill-packs">
-          <article class="skill-pack">
-            <div class="pack-hdr">
-              <div class="pack-title">Languages</div>
-              <div class="gwrap"><canvas class="pack-gauge" data-cat="game"></canvas></div>
-              <div class="gwrap"><canvas class="pack-gauge" data-cat="security"></canvas></div>
-              <div class="gwrap"><canvas class="pack-gauge" data-cat="cloud"></canvas></div>
-              <div class="gwrap"><canvas class="pack-gauge" data-cat="frameworks"></canvas></div>
-              <div class="gwrap"><canvas class="pack-gauge" data-cat="languages"></canvas></div>
-              <div class="pack-meta">5</div>
-            </div>
-            <details>
-              <summary>Show skills</summary>
-              <div class="pack-body">
-                <div class="tags">
-                  <span class="tag">Python</span>
-                  <span class="tag">JavaScript / TypeScript</span>
-                  <span class="tag">Java</span>
-                  <span class="tag">SQL</span>
-                  <span class="tag">Bash</span>
-                </div>
+        <div class="skill-hud">
+          <article class="skill-hud-mod lang">
+            <h2>// Languages</h2>
+            <div class="skill-hud-list">
+              <div class="skill-hud-cell" tabindex="0" data-name="Python" data-cat="Language" data-detail="APIs, microservices, SAP apps, tests (Simba, TCS)">
+                <img src="assets/tech_python.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Python</span><span class="skill-hud-use">APIs, microservices, SAP apps, tests (Simba, TCS)</span></div>
               </div>
-            </details>
+              <div class="skill-hud-cell" tabindex="0" data-name="JavaScript / TypeScript" data-cat="Language" data-detail="SAP UI5 and React UIs">
+                <img src="assets/tech_typescript.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">JavaScript / TypeScript</span><span class="skill-hud-use">SAP UI5 and React UIs</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Java" data-cat="Language" data-detail="DUCAT Java training foundation">
+                <img src="assets/tech_java.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Java</span><span class="skill-hud-use">DUCAT Java training foundation</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="SQL" data-cat="Language" data-detail="SAP Cloud apps and data stores">
+                <img src="assets/tech_sql.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">SQL</span><span class="skill-hud-use">SAP Cloud apps and data stores</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Bash" data-cat="Language" data-detail="Linux / DevOps scripts">
+                <img src="assets/tech_bash.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Bash</span><span class="skill-hud-use">Linux / DevOps scripts</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Dart" data-cat="Language" data-detail="Touge Flutter client">
+                <img src="assets/tech_dart.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Dart</span><span class="skill-hud-use">Touge Flutter client</span></div>
+              </div>
+            </div>
           </article>
 
-          <article class="skill-pack">
-            <div class="pack-hdr">
-              <div class="pack-title">Frameworks &amp; Libraries</div>
-              <div class="pack-meta">5+</div>
-            </div>
-            <details>
-              <summary>Show skills</summary>
-              <div class="pack-body">
-                <div class="tags">
-                  <span class="tag">Flask</span><span class="tag">Django</span><span class="tag">FastAPI</span>
-                  <span class="tag">React</span><span class="tag">SAP UI5</span>
-                  <span class="tag">OpenCV</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span>
-                </div>
+          <article class="skill-hud-mod fw">
+            <h2>// Frameworks</h2>
+            <div class="skill-hud-list">
+              <div class="skill-hud-cell" tabindex="0" data-name="Flask" data-cat="Framework" data-detail="REST APIs, Simba + GitHub viz">
+                <img src="assets/tech_flask.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Flask</span><span class="skill-hud-use">REST APIs, Simba + GitHub viz</span></div>
               </div>
-            </details>
+              <div class="skill-hud-cell" tabindex="0" data-name="Django" data-cat="Framework" data-detail="Simba Python microservices">
+                <img src="assets/tech_django.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Django</span><span class="skill-hud-use">Simba Python microservices</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="FastAPI" data-cat="Framework" data-detail="Python HTTP APIs">
+                <img src="assets/tech_fastapi.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">FastAPI</span><span class="skill-hud-use">Python HTTP APIs</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="React" data-cat="Framework" data-detail="GitHub viz reactive UI">
+                <img src="assets/tech_react.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">React</span><span class="skill-hud-use">GitHub viz reactive UI</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="SAP UI5" data-cat="Framework" data-detail="TCS SAP Cloud apps">
+                <img src="assets/tech_ui5.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">SAP UI5</span><span class="skill-hud-use">TCS SAP Cloud apps</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Flutter" data-cat="Framework" data-detail="Touge Dart client">
+                <img src="assets/tech_flutter.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Flutter</span><span class="skill-hud-use">Touge Dart client</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="OpenCV" data-cat="Library" data-detail="Computer vision / image tooling">
+                <img src="assets/tech_opencv.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">OpenCV</span><span class="skill-hud-use">Computer vision / image tooling</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="NumPy" data-cat="Library" data-detail="Numerical work / ML tooling">
+                <img src="assets/tech_numpy.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">NumPy</span><span class="skill-hud-use">Numerical work / ML tooling</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Pandas" data-cat="Library" data-detail="Dataframes / analysis">
+                <img src="assets/tech_pandas.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Pandas</span><span class="skill-hud-use">Dataframes / analysis</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Matplotlib" data-cat="Library" data-detail="GitHub viz graphs">
+                <img src="assets/tech_matplotlib.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Matplotlib</span><span class="skill-hud-use">GitHub viz graphs</span></div>
+              </div>
+            </div>
           </article>
 
-          <article class="skill-pack">
-            <div class="pack-hdr">
-              <div class="pack-title">Cloud &amp; DevOps</div>
-              <div class="pack-meta">7</div>
-            </div>
-            <details>
-              <summary>Show skills</summary>
-              <div class="pack-body">
-                <div class="tags">
-                  <span class="tag">AWS Lambda</span><span class="tag">API Gateway</span><span class="tag">DynamoDB</span><span class="tag">S3</span><span class="tag">SNS</span>
-                  <span class="tag">Serverless</span><span class="tag">Microservices</span>
-                  <span class="tag">Docker</span><span class="tag">Linux</span>
-                  <span class="tag">CI (GitHub Actions)</span><span class="tag">Git</span>
-                  <span class="tag">SAP BTP</span><span class="tag">ABAP on BTP</span>
-                  <span class="tag">GCP (basics)</span>
-                </div>
+          <article class="skill-hud-mod cloud">
+            <h2>// Cloud / DevOps</h2>
+            <div class="skill-hud-list">
+              <div class="skill-hud-cell" tabindex="0" data-name="AWS Lambda" data-cat="Cloud" data-detail="Serverless APIs, messaging and tracking">
+                <img src="assets/tech_lambda.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">AWS Lambda</span><span class="skill-hud-use">Serverless APIs, messaging and tracking</span></div>
               </div>
-            </details>
+              <div class="skill-hud-cell" tabindex="0" data-name="API Gateway" data-cat="Cloud" data-detail="HTTP front door for Lambda APIs">
+                <img src="assets/tech_apigateway.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">API Gateway</span><span class="skill-hud-use">HTTP front door for Lambda APIs</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="DynamoDB" data-cat="Data" data-detail="App data for scheduled messaging">
+                <img src="assets/tech_dynamodb.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">DynamoDB</span><span class="skill-hud-use">App data for scheduled messaging</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="S3" data-cat="Cloud" data-detail="Files and tracking snapshots">
+                <img src="assets/tech_s3.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">S3</span><span class="skill-hud-use">Files and tracking snapshots</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="SNS" data-cat="Cloud" data-detail="Notifications and push fan-out">
+                <img src="assets/tech_sns.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">SNS</span><span class="skill-hud-use">Notifications and push fan-out</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Docker" data-cat="DevOps" data-detail="Simba CI/CD containers">
+                <img src="assets/tech_docker.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Docker</span><span class="skill-hud-use">Simba CI/CD containers</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Linux" data-cat="DevOps" data-detail="Servers and DevOps hosts">
+                <img src="assets/tech_linux.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Linux</span><span class="skill-hud-use">Servers and DevOps hosts</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="GitHub Actions" data-cat="DevOps" data-detail="Simba deploy cycle, 2 weeks to 2 days">
+                <img src="assets/tech_github.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">GitHub Actions</span><span class="skill-hud-use">Simba deploy cycle, 2 weeks to 2 days</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="Git" data-cat="DevOps" data-detail="Source control">
+                <img src="assets/tech_git.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">Git</span><span class="skill-hud-use">Source control</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="SAP BTP / ABAP" data-cat="Cloud" data-detail="TCS, 15+ SAP BTP and Python web apps">
+                <img src="assets/tech_sap.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">SAP BTP / ABAP</span><span class="skill-hud-use">TCS, 15+ SAP BTP and Python web apps</span></div>
+              </div>
+              <div class="skill-hud-cell" tabindex="0" data-name="GCP" data-cat="Cloud" data-detail="Basics only">
+                <img src="assets/tech_gcp.svg" alt="">
+                <div class="skill-hud-copy"><span class="skill-hud-name">GCP</span><span class="skill-hud-use">Basics only</span></div>
+              </div>
+            </div>
           </article>
 
-          <article class="skill-pack">
-            <div class="pack-hdr">
-              <div class="pack-title">Security &amp; Integrations</div>
-              <div class="pack-meta">3</div>
-            </div>
-            <details>
-              <summary>Show skills</summary>
-              <div class="pack-body">
-                <div class="tags">
-                  <span class="tag">JWT Auth / API Security</span><span class="tag">FCM / SNS Push</span><span class="tag">PayPal SDK / Payments</span>
+          <div class="skill-hud-bottom">
+            <article class="skill-hud-mod sec">
+              <h2>// Security</h2>
+              <div class="skill-hud-list">
+                <div class="skill-hud-cell" tabindex="0" data-name="JWT / OAuth2" data-cat="Security" data-detail="API auth on TCS apps and messaging">
+                  <img src="assets/tech_jwt.svg" alt="">
+                  <div class="skill-hud-copy"><span class="skill-hud-name">JWT / OAuth2</span><span class="skill-hud-use">API auth on TCS apps and messaging</span></div>
+                </div>
+                <div class="skill-hud-cell" tabindex="0" data-name="FCM / SNS Push" data-cat="Security" data-detail="Tracking and notification push">
+                  <img src="assets/tech_fcm.svg" alt="">
+                  <div class="skill-hud-copy"><span class="skill-hud-name">FCM / SNS Push</span><span class="skill-hud-use">Tracking and notification push</span></div>
                 </div>
               </div>
-            </details>
-          </article>
+            </article>
 
-          <article class="skill-pack">
-            <div class="pack-hdr">
-              <div class="pack-title">Game / Realtime</div>
-              <div class="pack-meta">2</div>
-            </div>
-            <details>
-              <summary>Show skills</summary>
-              <div class="pack-body">
-                <div class="tags">
-                  <span class="tag">UE5 Niagara VFX / Blueprints</span><span class="tag">Realtime Systems / Performance</span>
+            <article class="skill-hud-mod pay">
+              <h2>// Integrations / Payments</h2>
+              <div class="skill-hud-list">
+                <div class="skill-hud-cell" tabindex="0" data-name="PayPal SDK / Payments" data-cat="Payments" data-detail="Credits in scheduled messaging">
+                  <img src="assets/tech_paypal.svg" alt="">
+                  <div class="skill-hud-copy"><span class="skill-hud-name">PayPal SDK / Payments</span><span class="skill-hud-use">Credits in scheduled messaging</span></div>
                 </div>
               </div>
-            </details>
-          </article>
+            </article>
+
+            <article class="skill-hud-mod game">
+              <h2>// Game / Realtime</h2>
+              <div class="skill-hud-list">
+                <div class="skill-hud-cell" tabindex="0" data-name="UE5 Niagara" data-cat="Game" data-detail="Flash mechanics VFX prototype">
+                  <img src="assets/tech_niagara.svg" alt="">
+                  <div class="skill-hud-copy"><span class="skill-hud-name">UE5 Niagara</span><span class="skill-hud-use">Flash mechanics VFX prototype</span></div>
+                </div>
+                <div class="skill-hud-cell" tabindex="0" data-name="Realtime systems" data-cat="Realtime" data-detail="Live routes and tracking">
+                  <img src="assets/tech_realtime.svg" alt="">
+                  <div class="skill-hud-copy"><span class="skill-hud-name">Realtime systems</span><span class="skill-hud-use">Live routes and tracking</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
       <!-- EXPERIENCE -->
       <section id="panel-experience" class="panel" role="region" aria-labelledby="exp-tab">
-        <div class="panel-head"><h1 id="exp-tab">Experience</h1></div>
-
-        <div class="kpis">
-          <div class="kpi"><div class="num" data-target="4">0</div><div class="lbl">Years Experience</div></div>
-          <div class="kpi"><div class="num" data-target="15">0</div><div class="lbl">Apps Delivered</div></div>
-          <div class="kpi"><div class="num" data-target="30">0</div><div class="lbl">% Productivity Boost</div></div>
-          <div class="kpi"><div class="num" data-target="20">0</div><div class="lbl">Issues/Day Resolved</div></div>
+        <div class="exp-hud-head">
+          <h1 id="exp-tab">Experience</h1>
+          <p class="lede">Timeline of roles. Current first. Metrics match Home IMPACT.</p>
         </div>
 
-        <div class="mission-grid">
-          <article class="mission">
-            <div class="hdr">
-              <div class="title">Simba Cleaners LLC — Python Developer</div>
-              <div class="meta">Mar 2025 – Present</div>
-            </div>
-            <div class="badges">
-              <span class="badge">Python</span><span class="badge">Flask</span><span class="badge">Django</span>
-              <span class="badge">Microservices</span><span class="badge">CI/CD</span>
-            </div>
-            <details>
-              <summary>View Details</summary>
-              <div class="body">
-                <ul>
+        <div class="exp-hud">
+          <div class="exp-hud-kpis" aria-label="Impact KPIs">
+            <div class="kpi" tabindex="0" data-name="Years" data-detail="TCS + Simba Cleaners · 2020–present"><div class="num" data-target="4">0</div><div class="lbl">Years</div></div>
+            <div class="kpi" tabindex="0" data-name="Apps" data-detail="15+ SAP BTP &amp; Python web apps shipped"><div class="num" data-target="15">0</div><div class="lbl">Apps</div></div>
+            <div class="kpi" tabindex="0" data-name="Productivity" data-detail="Workflow / API work, ~30% lift"><div class="num" data-target="30">0</div><div class="lbl">%</div></div>
+            <div class="kpi" tabindex="0" data-name="Issues/Day" data-detail="10–20 prod issues diagnosed daily at TCS"><div class="num" data-target="20">0</div><div class="lbl">Issues</div></div>
+          </div>
+
+          <div class="exp-hud-track">
+            <article class="dossier-role is-current">
+              <div class="role-mark"><img src="assets/logo_jpmc.svg" alt=""></div>
+              <div class="role-main">
+                <div class="role-top">
+                  <span class="role-kicker">Current</span>
+                  <span class="role-dates">May 2026 – Present · ~5 months</span>
+                </div>
+                <h3>JPMorgan Chase</h3>
+                <p class="role-title">Software Engineer 2</p>
+              </div>
+            </article>
+
+            <article class="dossier-role">
+              <div class="role-mark"><img src="assets/logo_simba.svg" alt=""></div>
+              <div class="role-main">
+                <div class="role-top">
+                  <span class="role-kicker">Role</span>
+                  <span class="role-dates">Mar 2025 – Apr 2026</span>
+                </div>
+                <h3>Simba Cleaners LLC</h3>
+                <p class="role-title">Python Developer</p>
+                <div class="role-badges">
+                  <span>Python</span><span>Flask</span><span>Django</span><span>Microservices</span><span>CI/CD</span>
+                </div>
+                <ul class="role-body">
                   <li>Migrated legacy .NET monolith to Python microservices, reducing maintenance cost by <b>25%</b>.</li>
                   <li>Built REST APIs for order mgmt, billing &amp; notifications — cut response time by <b>40%</b>.</li>
                   <li>Integrated with POS, automated invoicing — boosted efficiency by <b>30%</b>.</li>
@@ -454,22 +545,21 @@
                   <li>Contributed to CI/CD (GitHub Actions, Docker) — sped deployment cycle from 2 weeks to 2 days.</li>
                 </ul>
               </div>
-            </details>
-          </article>
+            </article>
 
-          <article class="mission">
-            <div class="hdr">
-              <div class="title">Tata Consultancy Services — Python Developer / SAP Cloud Consultant</div>
-              <div class="meta">Apr 2021 – Dec 2022</div>
-            </div>
-            <div class="badges">
-              <span class="badge">SAP BTP</span><span class="badge">UI5</span><span class="badge">ABAP</span>
-              <span class="badge">Python</span><span class="badge">JWT/OAuth2</span>
-            </div>
-            <details>
-              <summary>View Details</summary>
-              <div class="body">
-                <ul>
+            <article class="dossier-role">
+              <div class="role-mark"><img src="assets/logo_tcs.svg" alt=""></div>
+              <div class="role-main">
+                <div class="role-top">
+                  <span class="role-kicker">Role</span>
+                  <span class="role-dates">Apr 2021 – Dec 2022</span>
+                </div>
+                <h3>Tata Consultancy Services</h3>
+                <p class="role-title">Python Developer / SAP Cloud Consultant</p>
+                <div class="role-badges">
+                  <span>SAP BTP</span><span>UI5</span><span>ABAP</span><span>Python</span><span>JWT/OAuth2</span>
+                </div>
+                <ul class="role-body">
                   <li>Designed &amp; maintained 15+ SAP BTP &amp; Python web apps — delivered <b>30% higher functionality</b>.</li>
                   <li>Optimized workflows with Agile, code quality, perf tuning, accessibility, boosting productivity by <b>30%</b>.</li>
                   <li>Diagnosed 10–20 daily issues via PyCharm, Chrome DevTools, SAP Web IDE with minimal downtime.</li>
@@ -477,89 +567,61 @@
                   <li>Documented technical specs, enabling iterative Agile improvements and long-term scalability.</li>
                 </ul>
               </div>
-            </details>
-          </article>
+            </article>
 
-          <article class="mission">
-            <div class="hdr">
-              <div class="title">Tata Consultancy Services — Python Developer Trainee</div>
-              <div class="meta">Nov 2020 – Mar 2021</div>
-            </div>
-            <div class="badges">
-              <span class="badge">Python</span><span class="badge">SAP Cloud</span><span class="badge">UI5</span>
-              <span class="badge">JavaScript</span><span class="badge">SQL</span>
-            </div>
-            <details>
-              <summary>View Details</summary>
-              <div class="body">
-                <ul>
+            <article class="dossier-role">
+              <div class="role-mark"><img src="assets/logo_tcs.svg" alt=""></div>
+              <div class="role-main">
+                <div class="role-top">
+                  <span class="role-kicker">Trainee</span>
+                  <span class="role-dates">Nov 2020 – Mar 2021</span>
+                </div>
+                <h3>Tata Consultancy Services</h3>
+                <p class="role-title">Python Developer Trainee</p>
+                <div class="role-badges">
+                  <span>Python</span><span>SAP Cloud</span><span>UI5</span><span>JavaScript</span><span>SQL</span>
+                </div>
+                <ul class="role-body">
                   <li>Completed 6-month TCS Xplore &amp; ILP training; passed Elevate Wings 1 exam in Python.</li>
                   <li>Built SAP Cloud Apps with UI5 &amp; SQL DB; gained expertise in APIs, admin, &amp; Agile cycles.</li>
                 </ul>
               </div>
-            </details>
-          </article>
+            </article>
 
-          <article class="mission">
-            <div class="hdr">
-              <div class="title">Education</div>
-              <div class="meta">Illinois Institute of Technology (M.S. CS, Dec 2024) • Kurukshetra University (B.Tech CSE, May 2020)</div>
-            </div>
-            <div class="badges">
-              <span class="badge">Distributed Systems</span><span class="badge">Cloud-native</span><span class="badge">Applied ML</span>
-            </div>
-            <details>
-              <summary>View Details</summary>
-              <div class="body">
-                <ul>
+            <article class="dossier-role is-edu">
+              <div class="role-marks">
+                <div class="role-mark"><img src="assets/logo_iit.svg" alt="Illinois Institute of Technology"></div>
+                <div class="role-mark"><img src="assets/logo_kuk.svg" alt="Kurukshetra University"></div>
+              </div>
+              <div class="role-main">
+                <div class="role-top">
+                  <span class="role-kicker">Education</span>
+                  <span class="role-dates">2020 · 2024</span>
+                </div>
+                <h3>Education</h3>
+                <p class="role-title">Illinois Institute of Technology (M.S. CS, Dec 2024) • Kurukshetra University (B.Tech CSE, May 2020)</p>
+                <ul class="role-body">
                   <li>Grad focus: cloud-native, realtime systems, visualization, ML.</li>
                   <li>Undergrad: foundation in algorithms, databases, web dev, networking.</li>
                 </ul>
               </div>
-            </details>
-          </article>
+            </article>
+          </div>
 
-          <article class="mission">
-            <div class="hdr">
-              <div class="title">Certifications</div>
-              <div class="meta">Completed 2020 – 2024</div>
-            </div>
-            <div class="badges">
-              <span class="badge">CS50 AI</span><span class="badge">Azure AI</span><span class="badge">ML Fundamentals</span>
-              <span class="badge">SAP Cloud</span><span class="badge">SAP Analytics</span>
-            </div>
-            <details>
-              <summary>View Details</summary>
-              <div class="body">
-                <ul>
-                  <li>Harvard CS50’s Intro to AI with Python</li>
-                  <li>Microsoft: Fundamentals of ML, Azure AI Fundamentals, Azure AI Services</li>
-                  <li>SAP Cloud Platform &amp; Analytics Cloud (Udemy), SAP Basis Admin</li>
-                </ul>
+          <div class="exp-hud-compact">
+            <article class="exp-hud-mod certs">
+              <h2>// Certs</h2>
+              <div class="role-badges">
+                <span>CS50 AI</span><span>Azure AI</span><span>ML Fundamentals</span><span>SAP Cloud</span><span>SAP Analytics</span>
               </div>
-            </details>
-          </article>
-
-          <article class="mission">
-            <div class="hdr">
-              <div class="title">Trainings &amp; Achievements</div>
-              <div class="meta">2018 – 2021</div>
-            </div>
-            <div class="badges">
-              <span class="badge">DUCAT Java</span><span class="badge">Python Industrial Training</span><span class="badge">Elevate Wings 1</span>
-            </div>
-            <details>
-              <summary>View Details</summary>
-              <div class="body">
-                <ul>
-                  <li>DUCAT Java training (6 weeks)</li>
-                  <li>Industrial Python training (SO Infotech, 6 weeks)</li>
-                  <li>TCS Xplore (6 months) — Python focus</li>
-                  <li><b>Elevate Wings 1 Exam (TCS)</b>, Feb 2021</li>
-                </ul>
+            </article>
+            <article class="exp-hud-mod train">
+              <h2>// Trainings</h2>
+              <div class="role-badges">
+                <span>DUCAT Java</span><span>Python Industrial Training</span><span>Elevate Wings 1</span>
               </div>
-            </details>
-          </article>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -676,6 +738,6 @@
   <audio id="sfx-confirm" preload="auto" src="assets/confirm.wav"></audio>
   <audio id="sfx-back" preload="auto" src="assets/back.wav"></audio>
 
-  <script src="script.js?v=hud10"></script>
+  <script src="script.js?v=hud12"></script>
 </body>
 </html>
